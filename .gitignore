@@ -1,0 +1,5 @@
+*.jpg
+*.JPEG
+tiny-imagenet-200.zip
+tiny-imagenet-200/
+tiny-imagenet-200/random/*
