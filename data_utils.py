@@ -1,3 +1,9 @@
+"""
+DISCLAIMER: This file was not written by me, it was discovered
+online while looking into various python implementations
+of neural networks on certain datasets.
+"""
+
 import os
 import pickle
 import numpy as np
