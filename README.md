@@ -1,4 +1,4 @@
-For the sake of speed in cloning/pushing/pulling to thi repository,
+For the sake of speed in cloning/pushing/pulling to this repository,
 I've added the Tiny-Imagenet-200 dataset to the gitignore.
 
 To use this code you will first need to download the dataset from
