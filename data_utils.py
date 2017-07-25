@@ -1,6 +1,6 @@
+import os
 import pickle
 import numpy as np
-import os
 from scipy.misc import imread
 
 def load_CIFAR_batch(filename):
