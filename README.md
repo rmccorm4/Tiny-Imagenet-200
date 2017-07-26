@@ -30,3 +30,4 @@ TODO:
 * Networks are VERY dependent on weight initializations, so if they don't
 get a good random start, the network accuracy will be random. Look into
 how to set these values similarly to how matconvnet does it.
+* Make choice of wnids path more dynamic
