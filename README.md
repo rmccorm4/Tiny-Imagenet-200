@@ -14,6 +14,16 @@ wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
 To create sets of classes, just run `python produce_files.py` and enter
 your desired number of sets, and number of classes per set.
 
+Currently, I have number of classes set to 10 as default and image size
+set to 32x32x3 as default in order to train networks on the CIFAR-LeNet
+architecture, as seen in `train_tiny_lenet.py`
+
+To train this network, make whatever sets of classes you need using
+`produce_files.py` or use the hand-picked sets I have provided.
+
+Specify the path to the sets you chose inside of the training script and
+run it with `python train_tiny_lenet.py`.
+
 TODO:
 * Check if int values of images are correct as opposed to floats like in Matlab.
 * Check if resized images look correct with imshow
