@@ -13,3 +13,7 @@ wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
 
 To create sets of classes, just run `python produce_files.py` and enter
 your desired number of sets, and number of classes per set.
+
+TODO:
+* Check if int values of images are correct as opposed to floats like in Matlab.
+* Check if resized images look correct with imshow
