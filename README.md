@@ -11,6 +11,12 @@ if you have `wget` installed to download it to your current directory:
 wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
 ```
 
+Then you will need to install all required libraries by running the command:
+```
+pip3 install -r requirements.txt
+```
+or whatever python package manager you decide to use other than pip.
+
 To create sets of classes, just run `python produce_files.py` and enter
 your desired number of sets, and number of classes per set.
 

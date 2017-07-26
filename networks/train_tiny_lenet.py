@@ -21,9 +21,14 @@ train_path = os.path.join('work', 'training', 'tiny_imagenet')
 if not os.path.isdir(train_path):
 	os.makedirs(train_path)
 
-def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10):
+def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, wnids='', resize=False):
 	# Load data
-	x_train, y_train, x_val, y_val = process_images()
+	if resize:
+		print('resize is true')
+	else:
+		print('resize is false')
+	
+	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize)
 	
 	if hardware == 'gpu':
 		devices = ['/gpu:0']
@@ -81,7 +86,13 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  optimizer='adam', metrics=['accuracy'])
 
 	# check model checkpointing callback which saves only the "best" network according to the 'best_criterion' optional argument (defaults to validation loss)
-	model_checkpoint = ModelCheckpoint(train_path + '/best_weights_' + best_criterion + '.hdf5', monitor=best_criterion, save_best_only=True)
+	sets_index = wnids_path.find('sets')
+	outpath = train_path + '/' + wnids_path[sets_index:] + '/'
+	outfile = outpath + 'best_weights_' + best_criterion + '.hdf5'	
+	if not os.path.exists(outpath):
+		os.makedirs(outpath)
+
+	model_checkpoint = ModelCheckpoint(outfile, monitor=best_criterion, save_best_only=True)
 
 	if not data_augmentation:
 		print('Not using data augmentation.')
@@ -120,14 +131,14 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						validation_data=(x_val, y_val),
 						callbacks=[model_checkpoint])
 
-def process_images(num_classes=10):
+def process_images(wnids_path='', resize=False, num_classes=10):
 	# Path to tiny imagenet dataset
-	#path = input('Enter the relative path to the directory containing the wnids/words files: ')
-	path = os.path.join('tiny-imagenet-200')
-	#path = os.path.join('tiny-imagenet-200', 'random', '0')
-	print(path)
+	if wnids_path == '':
+		wnids_path = input('Enter the relative path to the directory containing the wnids/words files from sets/: ')
+	wnids_path = os.path.join('..', 'sets', wnids_path)
+	print(wnids_path)
 	# Generate data fields - test data has no labels so ignore it
-	classes, x_train, y_train, x_val, y_val = load_tiny_imagenet(path, os.path.join('hand-picked', '0'), num_classes=num_classes, resize=True)
+	classes, x_train, y_train, x_val, y_val = load_tiny_imagenet(os.path.join('tiny-imagenet-200'), wnids_path, num_classes=num_classes, resize=resize)
 	# Get number of classes specified in order from [0, num_classes)
 	print(classes)
 	#print(x_train)
@@ -155,7 +166,7 @@ def process_images(num_classes=10):
 	y_train = keras.utils.to_categorical(y_train, num_classes)
 	y_val = keras.utils.to_categorical(y_val, num_classes)
 
-	return x_train, y_train, x_val, y_val	
+	return x_train, y_train, x_val, y_val, wnids_path
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Train a convolutional neural network on the Tiny-Imagenet dataset.')
@@ -164,10 +175,12 @@ if __name__ == '__main__':
 	parser.add_argument('--num_epochs', type=int, default=50, help='')
 	parser.add_argument('--num_classes', type=int, default=10, help='')
 	parser.add_argument('--data_augmentation', type=bool, default=False, help='')
-	parser.add_argument('--best_criterion', type=str, default='val_loss', help='Criterion to consider when choosing the "best" model. Can also use \
-																				"val_acc", "train_loss", or "train_acc" (and perhaps others?).')
+	parser.add_argument('--best_criterion', type=str, default='val_loss', help='Criterion to consider when choosing the "best" model. Can also use "val_acc", "train_loss", or "train_acc" (and perhaps others?).')
+	parser.add_argument('--wnids', type=str, default='', help='Relative path to wnids file to train on.')
+	parser.add_argument('--resize', type=bool, default=False, help='False = 64x64 images, True=32x32 images')
+	
 	args = parser.parse_args()
-	hardware, batch_size, num_epochs, num_classes, data_augmentation, best_criterion = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.data_augmentation, args.best_criterion
+	hardware, batch_size, num_epochs, num_classes, data_augmentation, best_criterion, wnids, resize = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.data_augmentation, args.best_criterion, args.wnids, args.resize
 
 	# Possibly change num_classes to be a list of specific classes?
-	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes)
+	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, wnids, resize)

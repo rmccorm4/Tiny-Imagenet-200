@@ -1,4 +1,2 @@
-numpy
-scipy
 keras
-
+h5py
