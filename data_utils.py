@@ -6,6 +6,7 @@ of neural networks on certain datasets.
 
 import os
 import pickle
+import scipy.misc
 import numpy as np
 from scipy.misc import imread
 
@@ -34,7 +35,7 @@ def load_CIFAR10(ROOT):
   Xte, Yte = load_CIFAR_batch(os.path.join(ROOT, 'test_batch'))
   return Xtr, Ytr, Xte, Yte
 
-def load_tiny_imagenet(path, dtype=np.float32):
+def load_tiny_imagenet(path, wnids_path, resize=False, num_classes=200, dtype=np.float32):
   """
   Load TinyImageNet. Each of TinyImageNet-100-A, TinyImageNet-100-B, and
   TinyImageNet-200 have the same directory structure, so this can be used
@@ -56,14 +57,16 @@ def load_tiny_imagenet(path, dtype=np.float32):
     (such as in student code) then y_test will be None.
   """
   # First load wnids
-  with open(os.path.join(path, 'wnids.txt'), 'r') as f:
+  wnids_file = os.path.join(wnids_path, 'wnids' + str(num_classes) + '.txt')
+  with open(os.path.join(path, wnids_file), 'r') as f:
     wnids = [x.strip() for x in f]
 
   # Map wnids to integer labels
   wnid_to_label = {wnid: i for i, wnid in enumerate(wnids)}
 
   # Use words.txt to get names for each class
-  with open(os.path.join(path, 'words.txt'), 'r') as f:
+  words_file = os.path.join(wnids_path, 'words' + str(num_classes) + '.txt')
+  with open(os.path.join(path, words_file), 'r') as f:
     wnid_to_words = dict(line.split('\t') for line in f)
     for wnid, words in wnid_to_words.items():
       wnid_to_words[wnid] = [w.strip() for w in words.split(',')]
@@ -81,14 +84,27 @@ def load_tiny_imagenet(path, dtype=np.float32):
       filenames = [x.split('\t')[0] for x in f]
     num_images = len(filenames)
     
-    X_train_block = np.zeros((num_images, 3, 64, 64), dtype=dtype)
+    if resize:
+      X_train_block = np.zeros((num_images, 3, 32, 32), dtype=dtype)
+    else:
+      X_train_block = np.zeros((num_images, 3, 64, 64), dtype=dtype)
+    
     y_train_block = wnid_to_label[wnid] * np.ones(num_images, dtype=np.int64)
     for j, img_file in enumerate(filenames):
       img_file = os.path.join(path, 'train', wnid, 'images', img_file)
       img = imread(img_file)
+      #print(img)
+      #print(img.shape)
+      if resize:
+        img = scipy.misc.imresize(img, (32, 32, 3))
+        #print(img)
+        #print(img.shape)
       if img.ndim == 2:
         ## grayscale file
-        img.shape = (64, 64, 1)
+        if resize:
+          img.shape = (32, 32, 1)
+        else:
+          img.shape = (64, 64, 1)
       X_train_block[j] = img.transpose(2, 0, 1)
     X_train.append(X_train_block)
     y_train.append(y_train_block)
@@ -102,19 +118,37 @@ def load_tiny_imagenet(path, dtype=np.float32):
     img_files = []
     val_wnids = []
     for line in f:
-      img_file, wnid = line.split('\t')[:2]
-      img_files.append(img_file)
-      val_wnids.append(wnid)
+      # Select only validation images in chosen wnids set
+      if line.split()[1] in wnids:
+        img_file, wnid = line.split('\t')[:2]
+        img_files.append(img_file)
+        val_wnids.append(wnid)
     num_val = len(img_files)
     y_val = np.array([wnid_to_label[wnid] for wnid in val_wnids])
-    X_val = np.zeros((num_val, 3, 64, 64), dtype=dtype)
+    
+    if resize:
+      X_val = np.zeros((num_val, 3, 32, 32), dtype=dtype)
+    else:
+      X_val = np.zeros((num_val, 3, 64, 64), dtype=dtype)
+ 
     for i, img_file in enumerate(img_files):
       img_file = os.path.join(path, 'val', 'images', img_file)
       img = imread(img_file)
+      #print(img)
+      #print(img.shape)
+      if resize:
+        img = scipy.misc.imresize(img, (32, 32, 3))
+        #print(img)
+        #print(img.shape)
       if img.ndim == 2:
-        img.shape = (64, 64, 1)
+        if resize:
+          img.shape = (32, 32, 1)
+        else:
+          img.shape = (64, 64, 1)
+
       X_val[i] = img.transpose(2, 0, 1)
 
+  """
   # Next load test images
   # Students won't have test labels, so we need to iterate over files in the
   # images directory.
@@ -137,11 +171,11 @@ def load_tiny_imagenet(path, dtype=np.float32):
         img_file_to_wnid[line[0]] = line[1]
     y_test = [wnid_to_label[img_file_to_wnid[img_file]] for img_file in img_files]
     y_test = np.array(y_test)
+  """
   
   # Omit x_test and y_test because they're unlabeled
   #return class_names, X_train, y_train, X_val, y_val, X_test, y_test
   return class_names, X_train, y_train, X_val, y_val
-
 
 def load_models(models_dir):
   """

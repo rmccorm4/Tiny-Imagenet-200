@@ -17,13 +17,13 @@ from keras.callbacks import ModelCheckpoint
 # Suppress compiler warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 # Path to put computed activations/best epoch
-train_path = os.path.join('..', 'work', 'training', 'tiny_imagenet')
+train_path = os.path.join('work', 'training', 'tiny_imagenet')
 if not os.path.isdir(train_path):
 	os.makedirs(train_path)
 
-def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=200):
+def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10):
 	# Load data
-	x_train, y_train, x_val, y_val = process_images(num_classes)
+	x_train, y_train, x_val, y_val = process_images()
 	
 	if hardware == 'gpu':
 		devices = ['/gpu:0']
@@ -37,57 +37,89 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 		with tf.device(d):
 			model = Sequential()
 
+			print(x_train.shape[1:])
 			"""Block 1"""
 			model.add(Conv2D(128, (3, 3), strides=(1,1), padding='same', 
 					  input_shape=x_train.shape[1:]))
+			print(model.layers[-1].output_shape)
 			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
 			model.add(Conv2D(128, (3, 3), strides=(1,1), padding='same'))
+			print(model.layers[-1].output_shape)
 			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
 			model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
+			print(model.layers[-1].output_shape)
 			model.add(Activation('relu'))
+			print(model.layers[-1].output_shape)
 			
 			"""Block 2"""
 			model.add(Conv2D(128, (3, 3), strides=(1,1), padding='same'))
+			print(model.layers[-1].output_shape)
 			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
 			model.add(Conv2D(128, (3, 3), strides=(1,1), padding='same'))
+			print(model.layers[-1].output_shape)
 			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
 			model.add(Activation('relu'))
+			print(model.layers[-1].output_shape)
 			model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
+			print(model.layers[-1].output_shape)
 
 			"""Block 3"""
 			model.add(Conv2D(128, (3, 3), strides=(1,1), padding='same'))
+			print(model.layers[-1].output_shape)
 			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
 			model.add(Conv2D(128, (3, 3), strides=(1,1), padding='same'))
+			print(model.layers[-1].output_shape)
 			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
 			model.add(Activation('relu'))
+			print(model.layers[-1].output_shape)
 			model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
+			print(model.layers[-1].output_shape)
 
 			"""Block 4"""
 			model.add(Conv2D(256, (3, 3), strides=(1,1), padding='same'))
-			model.add(BatchNormalization())
-			model.add(Conv2D(512, (3, 3), strides=(1,1), padding='same'))
-			model.add(BatchNormalization())
-			model.add(Activation('relu'))
-			model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-						
 			print(model.layers[-1].output_shape)
-
+			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
+			model.add(Conv2D(512, (3, 3), strides=(1,1), padding='same'))
+			print(model.layers[-1].output_shape)
+			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
+			model.add(Activation('relu'))
+			print(model.layers[-1].output_shape)
+			model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
+			print(model.layers[-1].output_shape)
+						
 			"""Block 5"""
 			model.add(Flatten())
+			print(model.layers[-1].output_shape)
 			model.add(Dense(4096))
+			print(model.layers[-1].output_shape)
 			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
 			model.add(Activation('relu'))
+			print(model.layers[-1].output_shape)
 			
 			"""Block Test"""
 			model.add(Dense(1024))
+			print(model.layers[-1].output_shape)
 			model.add(BatchNormalization())
+			print(model.layers[-1].output_shape)
 			model.add(Activation('relu'))
+			print(model.layers[-1].output_shape)
 
 			"""Output Layer"""
 			model.add(Dense(num_classes))
+			print(model.layers[-1].output_shape)
 
 			"""Loss Layer"""
 			model.add(Activation('softmax'))
+			print(model.layers[-1].output_shape)
 
 			"""Optimizer"""
 			model.compile(loss=losses.categorical_crossentropy, 
@@ -133,13 +165,20 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						validation_data=(x_val, y_val),
 						callbacks=[model_checkpoint])
 
-def process_images(num_classes=200):
+def process_images(num_classes=10):
 	# Path to tiny imagenet dataset
+	#path = input('Enter the relative path to the directory containing the wnids/words files: ')
 	path = os.path.join('tiny-imagenet-200')
+	#path = os.path.join('tiny-imagenet-200', 'random', '0')
+	print(path)
 	# Generate data fields - test data has no labels so ignore it
-	classes, x_train, y_train, x_val, y_val = load_tiny_imagenet(path)
+	classes, x_train, y_train, x_val, y_val = load_tiny_imagenet(path, os.path.join('random', '0'), num_classes=num_classes, resize=True)
 	# Get number of classes specified in order from [0, num_classes)
-	print(x_train)
+	print(classes)
+	#print(x_train)
+	print(x_train.shape)
+	print(y_train.shape)
+
 	"""
 	if num_classes > 200:
 		print('Set number of classes to maximum of 200\n')
@@ -157,8 +196,6 @@ def process_images(num_classes=200):
 	x_train = np.einsum('iljk->ijkl', x_train)
 	x_val = np.einsum('iljk->ijkl', x_val)
 
-	print(x_train)
-
 	# Convert labels to one hot vectors
 	y_train = keras.utils.to_categorical(y_train, num_classes)
 	y_val = keras.utils.to_categorical(y_val, num_classes)
@@ -170,7 +207,7 @@ if __name__ == '__main__':
 	parser.add_argument('--hardware', type=str, default='cpu', help='cpu, gpu, or 2gpu currently supported.')
 	parser.add_argument('--batch_size', type=int, default=100, help='')
 	parser.add_argument('--num_epochs', type=int, default=50, help='')
-	parser.add_argument('--num_classes', type=int, default=200, help='')
+	parser.add_argument('--num_classes', type=int, default=10, help='')
 	parser.add_argument('--data_augmentation', type=bool, default=False, help='')
 	parser.add_argument('--best_criterion', type=str, default='val_loss', help='Criterion to consider when choosing the "best" model. Can also use \
 																				"val_acc", "train_loss", or "train_acc" (and perhaps others?).')

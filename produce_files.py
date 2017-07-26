@@ -14,7 +14,6 @@ sets = int(input('Enter the number of sets to generate: '))
 
 # Read in words200.txt file to generate sets of 10 classes
 inpath = os.path.join('tiny-imagenet-200', 'words200.txt')
-print(inpath)
 infile = open(inpath, 'r')
 
 lines = []
@@ -44,7 +43,8 @@ for i in range(sets):
 	# Get class IDs separately
 	for line in words:
 		wnids_file.write(line.split('\t')[0])
-		words_file.write(line.split('\t')[1])
+		wnids_file.write('\n')
+		words_file.write(line)
 
 words_file.close()
 wnids_file.close()
