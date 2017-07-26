@@ -8,7 +8,8 @@ all_wnids_path = os.path.join('tiny-imagenet-200', 'wnids.txt')
 if not os.path.exists(os.path.join('sets')):
 	os.mkdir(os.path.join('sets'))
 
-os.system('cp ' + all_words_path + ' ' + all_wnids_path + ' sets/')
+os.system('cp ' + all_words_path + ' sets/')
+os.system('cp ' + all_wnids_path + ' sets/wnids200.txt')
 words200_path = os.path.join('sets', 'words200.txt')
 os.system('grep -f ' + all_wnids_path + ' ' + all_words_path + ' > ' + words200_path)
 
