@@ -4,7 +4,12 @@ from random import randint
 # Create words200.txt file
 all_words_path = os.path.join('tiny-imagenet-200', 'words.txt')
 all_wnids_path = os.path.join('tiny-imagenet-200', 'wnids.txt')
-words200_path = os.path.join('tiny-imagenet-200', 'words200.txt')
+
+if not os.path.exists(os.path.join('sets')):
+	os.mkdir(os.path.join('sets'))
+
+os.system('cp ' + all_words_path + ' ' + all_wnids_path + ' sets/')
+words200_path = os.path.join('sets', 'words200.txt')
 os.system('grep -f ' + all_wnids_path + ' ' + all_words_path + ' > ' + words200_path)
 
 # Define number of classes to put in a set
@@ -13,7 +18,7 @@ num_classes = int(input('Enter number of classes to put in a set: '))
 sets = int(input('Enter the number of sets to generate: '))
 
 # Read in words200.txt file to generate sets of 10 classes
-inpath = os.path.join('tiny-imagenet-200', 'words200.txt')
+inpath = os.path.join('sets', 'words200.txt')
 infile = open(inpath, 'r')
 
 lines = []
@@ -25,7 +30,7 @@ infile.close()
 # Produce sets of classes
 for i in range(sets):
 	temp = lines[:]
-	outpath = os.path.join('tiny-imagenet-200', 'random', str(i))
+	outpath = os.path.join('sets', 'random', str(i))
 	os.system('mkdir -p ' + outpath)
 	words_path = os.path.join(outpath, 'words' + str(num_classes) + '.txt')
 	words_file = open(words_path, 'w')
