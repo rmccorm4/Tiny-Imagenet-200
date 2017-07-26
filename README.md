@@ -17,3 +17,6 @@ your desired number of sets, and number of classes per set.
 TODO:
 * Check if int values of images are correct as opposed to floats like in Matlab.
 * Check if resized images look correct with imshow
+* Networks are VERY dependent on weight initializations, so if they don't
+get a good random start, the network accuracy will be random. Look into
+how to set these values similarly to how matconvnet does it.
