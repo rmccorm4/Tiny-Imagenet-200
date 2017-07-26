@@ -22,7 +22,7 @@ To train this network, make whatever sets of classes you need using
 `produce_files.py` or use the hand-picked sets I have provided.
 
 Specify the path to the sets you chose inside of the training script and
-run it with `python train_tiny_lenet.py`.
+run it with `python networks/train_tiny_lenet.py`.
 
 TODO:
 * Check if int values of images are correct as opposed to floats like in Matlab.
