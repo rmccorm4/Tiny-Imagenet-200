@@ -81,7 +81,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  optimizer='adam', metrics=['accuracy'])
 
 	# check model checkpointing callback which saves only the "best" network according to the 'best_criterion' optional argument (defaults to validation loss)
-	model_checkpoint = ModelCheckpoint(train_path + 'best_weights_' + best_criterion + '.hdf5', monitor=best_criterion, save_best_only=True)
+	model_checkpoint = ModelCheckpoint(train_path + '/best_weights_' + best_criterion + '.hdf5', monitor=best_criterion, save_best_only=True)
 
 	if not data_augmentation:
 		print('Not using data augmentation.')
