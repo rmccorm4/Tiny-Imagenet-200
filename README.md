@@ -75,3 +75,8 @@ TODO:
 get a good random start, the network accuracy will be random. Look into
 how to set these values similarly to how matconvnet does it.
 * Make choice of wnids path more dynamic
+
+IDEAS:
+* Train a network to learn best classes to put together in a set?
+* Without using a network, recursively train a network, get the best classes
+and train on those, and repeat
