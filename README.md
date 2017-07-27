@@ -80,3 +80,6 @@ IDEAS:
 * Train a network to learn best classes to put together in a set?
 * Without using a network, recursively train a network, get the best classes
 and train on those, and repeat
+
+* Can a GAN be used to increase the number of training/validation images
+per class by generating realistic images?
