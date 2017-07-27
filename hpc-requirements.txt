@@ -1,3 +1,0 @@
-conda create --name py3 python=3.5.2
-source activate py3
-conda install -r requirements.txt
