@@ -81,5 +81,5 @@ IDEAS:
 * Without using a network, recursively train a network, get the best classes
 and train on those, and repeat
 
-* Can a GAN be used to increase the number of training/validation images
-per class by generating realistic images?
+* Can a Generative Adversarial Network be used to increase the number of 
+training/validation images per class by generating realistic images?
