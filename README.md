@@ -76,6 +76,7 @@ get a good random start, the network accuracy will be random. Look into
 how to set these values similarly to how matconvnet does it.
 * Make choice of wnids path more dynamic
 * Figure out how to check accuracy from saved model
+	* Worst case run validation images through trained network again?
 
 IDEAS:
 * Train a network to learn best classes to put together in a set?
