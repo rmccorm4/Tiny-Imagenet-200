@@ -7,8 +7,9 @@ import tensorflow as tf
 from data_utils import load_tiny_imagenet
 
 from keras import losses
+from keras import initializers
 from keras.preprocessing.image import ImageDataGenerator
-from keras.models import Sequential
+from keras.models import Sequential, load_model
 from keras.layers import Dense, Dropout, Activation, Flatten, BatchNormalization
 from keras.layers import Conv2D, MaxPooling2D, AveragePooling2D
 from keras.callbacks import ModelCheckpoint
@@ -21,7 +22,7 @@ train_path = os.path.join('work', 'training', 'tiny_imagenet')
 if not os.path.isdir(train_path):
 	os.makedirs(train_path)
 
-def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, wnids='', resize=False):
+def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, wnids='', resize=False, load=''):
 	# Load data
 	if resize:
 		print('resize is true')
@@ -40,96 +41,120 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 	# Run on chosen processors
 	for d in devices:
 		with tf.device(d):
-			model = Sequential()
+			# Load saved model and check its accuracy if optional arg passed
+			if load != '':
+				model = load_model(load)
+				# Evaluate network accuracy
+				model.compile(loss=losses.categorical_crossentropy, 
+							  optimizer='adam', metrics=['accuracy'])
+				score = model.evaluate(x_val, y_val, batch_size=batch_size)
+				print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
+				return str(score[1]*100)
 
-			"""Block 1"""
-			model.add(Conv2D(32, (5, 5), strides=(1,1), padding='same', 
-					  input_shape=x_train.shape[1:]))
-			print(model.layers[-1].output_shape)
-			model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-			print(model.layers[-1].output_shape)
-			model.add(Activation('relu'))
-			print(model.layers[-1].output_shape)
-			
-			"""Block 2"""
-			model.add(Conv2D(32, (5, 5), strides=(1,1), padding='same'))
-			print(model.layers[-1].output_shape)
-			model.add(Activation('relu'))
-			print(model.layers[-1].output_shape)
-			model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-			print(model.layers[-1].output_shape)
-			
-			"""Block 3"""
-			model.add(Conv2D(64, (5, 5), strides=(1,1), padding='same'))
-			print(model.layers[-1].output_shape)
-			model.add(Activation('relu'))
-			print(model.layers[-1].output_shape)
-			model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-			print(model.layers[-1].output_shape)
+			# Otherwise train new network
+			else:
+				model = Sequential()
 
-			"""Fully Connected Layer and ReLU"""
-			model.add(Flatten())
-			print(model.layers[-1].output_shape)
-			model.add(Activation('relu'))
-			print(model.layers[-1].output_shape)
-			
-			"""Output Layer"""
-			model.add(Dense(num_classes))
-			print(model.layers[-1].output_shape)
+				"""Block 1"""
+				model.add(Conv2D(32, (5, 5), strides=(1,1), padding='same', 
+						  kernel_initializer=initializers.random_uniform(minval=-0.01, maxval=0.01),
+						  bias_initializer='zeros',
+						  input_shape=x_train.shape[1:]))
+				print(model.layers[-1].output_shape)
+				model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
+				print(model.layers[-1].output_shape)
+				model.add(Activation('relu'))
+				print(model.layers[-1].output_shape)
+				
+				"""Block 2"""
+				model.add(Conv2D(32, (5, 5), strides=(1,1), padding='same',
+						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
+						  bias_initializer='zeros'))
+				print(model.layers[-1].output_shape)
+				model.add(Activation('relu'))
+				print(model.layers[-1].output_shape)
+				model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
+				print(model.layers[-1].output_shape)
+				
+				"""Block 3"""
+				model.add(Conv2D(64, (5, 5), strides=(1,1), padding='same',
+						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
+						  bias_initializer='zeros'))
 
-			"""Loss Layer"""
-			model.add(Activation('softmax'))
-			print(model.layers[-1].output_shape)
+				print(model.layers[-1].output_shape)
+				model.add(Activation('relu'))
+				print(model.layers[-1].output_shape)
+				model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
+				print(model.layers[-1].output_shape)
 
-			"""Optimizer"""
-			model.compile(loss=losses.categorical_crossentropy, 
-						  optimizer='adam', metrics=['accuracy'])
+				"""Fully Connected Layer and ReLU"""
+				model.add(Flatten())
+				print(model.layers[-1].output_shape)
+				model.add(Activation('relu'))
+				print(model.layers[-1].output_shape)
+				
+				"""Output Layer"""
+				model.add(Dense(num_classes,
+						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
+						  bias_initializer='zeros'))
 
-	# check model checkpointing callback which saves only the "best" network according to the 'best_criterion' optional argument (defaults to validation loss)
-	sets_index = wnids_path.find('sets')
-	outpath = train_path + '/' + wnids_path[sets_index:] + '/'
-	outfile = outpath + 'best_weights_' + best_criterion + '.hdf5'	
-	if not os.path.exists(outpath):
-		os.makedirs(outpath)
+				print(model.layers[-1].output_shape)
 
-	model_checkpoint = ModelCheckpoint(outfile, monitor=best_criterion, save_best_only=True)
+				"""Loss Layer"""
+				model.add(Activation('softmax'))
+				print(model.layers[-1].output_shape)
 
-	if not data_augmentation:
-		print('Not using data augmentation.')
-		# Use the defined 'model_checkpoint' callback
-		model.fit(x_train, y_train,
-			  batch_size=batch_size,
-			  epochs=num_epochs,
-			  validation_data=(x_val, y_val),
-			  shuffle=True, 
-			  callbacks=[model_checkpoint])
-	else:
-		print('Using real-time data augmentation.')
-		# This will do preprocessing and realtime data augmentation:
-		datagen = ImageDataGenerator(
-			featurewise_center=False,  # set input mean to 0 over the dataset
-			samplewise_center=False,  # set each sample mean to 0
-			featurewise_std_normalization=False,  # divide inputs by std of the dataset
-			samplewise_std_normalization=False,  # divide each input by its std
-			zca_whitening=False,  # apply ZCA whitening
-			rotation_range=0,  # randomly rotate images in the range (degrees, 0 to 180)
-			width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
-			height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
-			horizontal_flip=True,  # randomly flip images
-			vertical_flip=False)  # randomly flip images
+				"""Optimizer"""
+				model.compile(loss=losses.categorical_crossentropy, 
+							  optimizer='adam', metrics=['accuracy'])
+	
+				# check model checkpointing callback which saves only the "best" network according to the 'best_criterion' optional argument (defaults to validation loss)
+				sets_index = wnids_path.find('sets')
+				outpath = train_path + '/' + wnids_path[sets_index:] + '/'
+				outfile = outpath + 'best_weights_' + best_criterion + '.hdf5'	
+				if not os.path.exists(outpath):
+					os.makedirs(outpath)
 
-		# Compute quantities required for feature-wise normalization
-		# (std, mean, and principal components if ZCA whitening is applied).
-		datagen.fit(x_train)
+				model_checkpoint = ModelCheckpoint(outfile, monitor=best_criterion, save_best_only=True)
 
-		# Fit the model on the batches generated by datagen.flow().
-		# Use the defined 'model_checkpoint' callback
-		model.fit_generator(datagen.flow(x_train, y_train,
-						batch_size=batch_size),
-						steps_per_epoch=x_train.shape[0] // batch_size,
-						epochs=num_epochs,
-						validation_data=(x_val, y_val),
-						callbacks=[model_checkpoint])
+				if not data_augmentation:
+					print('Not using data augmentation.')
+					# Use the defined 'model_checkpoint' callback
+					model.fit(x_train, y_train,
+						  batch_size=batch_size,
+						  epochs=num_epochs,
+						  validation_data=(x_val, y_val),
+						  shuffle=True, 
+						  callbacks=[model_checkpoint])
+				else:
+					print('Using real-time data augmentation.')
+					# This will do preprocessing and realtime data augmentation:
+					datagen = ImageDataGenerator(
+						featurewise_center=False,  # set input mean to 0 over the dataset
+						samplewise_center=False,  # set each sample mean to 0
+						featurewise_std_normalization=False,  # divide inputs by std of the dataset
+						samplewise_std_normalization=False,  # divide each input by its std
+						zca_whitening=False,  # apply ZCA whitening
+						rotation_range=0,  # randomly rotate images in the range (degrees, 0 to 180)
+						width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
+						height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
+						horizontal_flip=True,  # randomly flip images
+						vertical_flip=False)  # randomly flip images
+
+					# Compute quantities required for feature-wise normalization
+					# (std, mean, and principal components if ZCA whitening is applied).
+					datagen.fit(x_train)
+
+					# Fit the model on the batches generated by datagen.flow().
+					# Use the defined 'model_checkpoint' callback
+					model.fit_generator(datagen.flow(x_train, y_train,
+									batch_size=batch_size),
+									steps_per_epoch=x_train.shape[0] // batch_size,
+									epochs=num_epochs,
+									validation_data=(x_val, y_val),
+									callbacks=[model_checkpoint])
+				
+				return 'New network trained!'
 
 def process_images(wnids_path='', resize=False, num_classes=10):
 	# Path to tiny imagenet dataset
@@ -172,15 +197,16 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Train a convolutional neural network on the Tiny-Imagenet dataset.')
 	parser.add_argument('--hardware', type=str, default='cpu', help='cpu, gpu, or 2gpu currently supported.')
 	parser.add_argument('--batch_size', type=int, default=100, help='')
-	parser.add_argument('--num_epochs', type=int, default=50, help='')
+	parser.add_argument('--num_epochs', type=int, default=30, help='')
 	parser.add_argument('--num_classes', type=int, default=10, help='')
 	parser.add_argument('--data_augmentation', type=bool, default=False, help='')
 	parser.add_argument('--best_criterion', type=str, default='val_loss', help='Criterion to consider when choosing the "best" model. Can also use "val_acc", "train_loss", or "train_acc" (and perhaps others?).')
 	parser.add_argument('--wnids', type=str, default='', help='Relative path to wnids file to train on.')
 	parser.add_argument('--resize', type=bool, default=False, help='False = 64x64 images, True=32x32 images')
+	parser.add_argument('--load', type=str, default='', help='Path to saved model to load and evaluate.')
 	
 	args = parser.parse_args()
-	hardware, batch_size, num_epochs, num_classes, data_augmentation, best_criterion, wnids, resize = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.data_augmentation, args.best_criterion, args.wnids, args.resize
+	hardware, batch_size, num_epochs, num_classes, data_augmentation, best_criterion, wnids, resize, load = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.data_augmentation, args.best_criterion, args.wnids, args.resize, args.load
 
 	# Possibly change num_classes to be a list of specific classes?
-	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, wnids, resize)
+	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, wnids, resize, load)
