@@ -1,4 +1,4 @@
-set,classes,accuracy
+SET,CLASSES,ACCURACY
 random/0,['walking stick' 'teapot' 'Chihuahua' 'fountain' 'dining table' 'guinea pig' 'altar' 'water tower' 'fly' 'vestment'],10.00%
 random/1,['banana' 'gondola' 'reel' 'mashed potato' 'bee' 'sewing machine' 'Chihuahua' 'cockroach' 'pretzel' 'spider web'],10.00%
 random/2,['Arabian camel' 'reel' 'cannon' 'golden retriever' 'organ' 'brass' 'sandal' 'banana' 'oboe' 'Christmas stocking'],10.00%
@@ -9,14 +9,3 @@ random/6,"['banana' 'reel' 'vestment' 'European fire salamander' 'confectionery'
 random/7,['freight car' 'pretzel' 'chest' 'teapot' 'maypole' 'fur coat' 'potpie' 'American lobster' 'bow tie' 'brown bear'],8.00%
 random/8,['mantis' 'lampshade' 'tractor' 'pay-phone' 'king penguin' 'beaker' 'cougar' 'cliff dwelling' 'baboon' 'confectionery'],10.00%
 random/9,['lion' 'plate' 'hourglass' 'viaduct' 'pill bottle' 'drumstick' 'snail' 'flagpole' 'vestment' 'maypole'],10.00%
-random/10,['frying pan' 'chest' 'cardigan' 'fly' 'teddy' 'Christmas stocking' 'turnstile' 'spiny lobster' 'barrel' 'cliff dwelling'],16.20%
-random/11,['orangutan' 'cauliflower' 'standard poodle' 'broom' 'trolleybus' 'golden retriever' 'pop bottle' 'apron' 'tabby' 'plate'],10.00%
-random/12,['acorn' 'mushroom' 'iPod' 'bathtub' 'maypole' 'barbershop' 'ice lolly' 'gazelle' 'suspension bridge' 'police van'],8.00%
-random/13,['pop bottle' 'barrel' 'coral reef' 'fly' 'viaduct' 'bannister' 'lesser panda' 'turnstile' 'candle' 'academic gown'],10.80%
-random/14,['bathtub' 'ice lolly' 'space heater' 'birdhouse' 'bucket' 'academic gown' 'chimpanzee' 'pretzel' 'sea slug' 'frying pan'],10.00%
-random/15,['convertible' 'school bus' 'coral reef' 'trolleybus' 'brass' 'bullfrog' 'alp' 'centipede' 'trilobite' 'bighorn'],10.00%
-random/16,['thatch' 'hog' 'grasshopper' 'walking stick' 'ice lolly' 'nail' 'computer keyboard' 'drumstick' 'torch' 'rocking chair'],10.00%
-random/17,['hog' 'Arabian camel' 'sombrero' 'trolleybus' 'turnstile' 'baboon' 'abacus' 'frying pan' 'altar' 'pomegranate'],10.40%
-random/18,['neck brace' 'chest' 'fur coat' 'brain coral' 'freight car' 'fountain' 'water jug' 'sea slug' 'iPod' 'monarch'],10.00%
-random/19,['viaduct' 'black stork' 'space heater' 'bighorn' 'apron' 'comic book' 'pole' 'oboe' 'refrigerator' 'confectionery'],10.00%
-random/20,['teddy' 'apron' 'projectile' 'poncho' 'lampshade' 'viaduct' 'sea slug' 'lawn mower' 'beach wagon' 'ladybug'],10.00%
