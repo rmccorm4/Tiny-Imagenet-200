@@ -25,7 +25,7 @@ if __name__ == '__main__':
 	print(data)
 
 	with open('table.csv', 'w') as csv_file:
-		writer = csv.writer(csv_file, delimiter=' ')
+		writer = csv.writer(csv_file, delimiter=',')
 		for line in data:
 			writer.writerow(line)
 	csv_file.close()
