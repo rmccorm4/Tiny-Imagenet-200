@@ -48,6 +48,8 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 							  optimizer='adam', metrics=['accuracy'])
 				score = model.evaluate(x_val, y_val, batch_size=batch_size)
 				print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
+				return str(score[1]*100)
+
 			# Otherwise train new network
 			else:
 				model = Sequential()
@@ -140,6 +142,8 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 									epochs=num_epochs,
 									validation_data=(x_val, y_val),
 									callbacks=[model_checkpoint])
+				
+				return 'New network trained!'
 
 def process_images(wnids_path='', resize=False, num_classes=10):
 	# Path to tiny imagenet dataset
