@@ -8,7 +8,7 @@ if __name__ == '__main__':
 	start = int(input('Enter network number to start at: '))
 	end = int(input('Enter network number to end at: '))
 	
-	data = []
+	data = [['set', 'classes', 'accuracy']]
 	for i in range(start, end+1):
 		set_path = 'random/' + str(i)
 		words10_path = 'sets/' + set_path + '/words10.txt'
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
 		accuracy = train_tiny_imagenet(wnids=set_path, resize=True, load=model_path)
 
-		data.append((set_path + ' ' + str(classes) + ' ' + accuracy).split(' '))
+		data.append((set_path + ',' + str(classes) + ',' + accuracy).split(','))
 	print(data)
 
 	with open('table.csv', 'w') as csv_file:
