@@ -17,12 +17,14 @@ if __name__ == '__main__':
 			# you may also want to remove whitespace characters like `\n` at the end of each line
 			classes = [x.split('\t')[1].split(',')[0].strip() for x in classes]
 		
+		classes = str(classes).replace(',', '')
+
 		model_path = 'work/training/tiny_imagenet/sets/' + set_path + '/best_weights_val_loss.hdf5'
 
 		accuracy = '%.2f' % float(train_tiny_imagenet(wnids=set_path, resize=True, load=model_path))
 		
-		print(str(classes))
-		line = set_path + ',' + str(classes) + ',' + accuracy
+		print(classes)
+		line = set_path + ',' + classes + ',' + accuracy
 		data.append(line.split(','))
 	print(data)
 
