@@ -19,9 +19,11 @@ if __name__ == '__main__':
 		
 		model_path = 'work/training/tiny_imagenet/sets/' + set_path + '/best_weights_val_loss.hdf5'
 
-		accuracy = train_tiny_imagenet(wnids=set_path, resize=True, load=model_path)
-
-		data.append((set_path + ',' + str(classes) + ',' + accuracy).split(','))
+		accuracy = '%.2f' % float(train_tiny_imagenet(wnids=set_path, resize=True, load=model_path))
+		
+		print(str(classes))
+		line = set_path + ',' + str(classes) + ',' + accuracy
+		data.append(line.split(','))
 	print(data)
 
 	with open('table.csv', 'w') as csv_file:
