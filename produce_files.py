@@ -1,5 +1,5 @@
 import os
-from random import randint
+from random import randint, sample
 
 # Create words200.txt file
 all_words_path = os.path.join('tiny-imagenet-200', 'words.txt')
@@ -40,12 +40,8 @@ for i in range(sets):
 	wnids_path = os.path.join(outpath, 'wnids' + str(num_classes) + '.txt')
 	wnids_file = open(wnids_path, 'w')
 
-	words = []
 	# Get <num_classes> random classes
-	for k in range(num_classes):
-		choice = randint(0, len(temp)-1)
-		# Pick class and remove it from list for no duplicates
-		words.append(temp.pop(choice))
+	words = sample(temp, num_classes)
 
 	# Get class IDs separately
 	for line in words:
