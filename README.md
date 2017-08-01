@@ -38,9 +38,8 @@ conda create --name py3 python=3.5.2 --file requirements.txt
 To create sets of classes, just run `python produce_files.py` and enter
 your desired number of sets, and number of classes per set.
 
-Currently, I have number of classes set to 10 as default and image size
-set to 32x32x3 as default in order to train networks on the CIFAR-LeNet
-architecture, as seen in `train_tiny_lenet.py`
+Currently, I have number of classes set to 200 as default and image size
+set to 64x64x3 as default.
 
 To train this network, make whatever sets of classes you need using
 `produce_files.py` or use the hand-picked sets I have provided.
@@ -50,7 +49,7 @@ images from 64x64x3 to 32x32x3 and train the network on a 10-class subset on the
 CIFAR LeNet architecture:
 
 ```
-python networks/train_tiny_lenet.py --resize=True
+python networks/train_tiny_lenet.py --resize=True --num_classes=10
 ```
 
 To choose which set of classes you train the network on when executing the
@@ -58,7 +57,7 @@ command, you can use the `wnids` optional argument to pass the relative
 path to your chosen set of classes:
 
 ```
-python networks/train_tiny_lenet.py --resize=True --wnids='random/0'
+python networks/train_tiny_lenet.py --resize=True --num_classes=10 --wnids='random/0'
 ```
 
 Otherwise, you will be prompted to input the path to a set of classes
