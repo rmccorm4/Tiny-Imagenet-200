@@ -17,6 +17,7 @@ os.system('grep -f ' + all_wnids_path + ' ' + all_words_path + ' > ' + words200_
 num_classes = int(input('Enter number of classes to put in a set: '))
 # Define number of sets of classes to produce
 sets = int(input('Enter the number of sets to generate: '))
+start = int(input('Enter the number to start making sets from: '))
 
 # Read in words200.txt file to generate sets of 10 classes
 inpath = os.path.join('sets', 'words200.txt')
@@ -31,7 +32,7 @@ infile.close()
 # Produce sets of classes
 for i in range(sets):
 	temp = lines[:]
-	outpath = os.path.join('sets', 'random', str(i))
+	outpath = os.path.join('sets', 'random', str(start+i))
 	os.system('mkdir -p ' + outpath)
 	words_path = os.path.join(outpath, 'words' + str(num_classes) + '.txt')
 	words_file = open(words_path, 'w')
