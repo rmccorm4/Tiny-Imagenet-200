@@ -80,30 +80,40 @@ python networks/train_tiny_lenet.py
 
 ### Tweakable Parameters
 
-```python
+```
 # String: Choice of whether to use 'cpu', 'gpu', '2gpu', Default='cpu'
 --hardware
+
 # Int: How many images to pass through the network at once, Default=100
 --batch_size
+
 # Int: How many times to run all of the data through th enetwork, Defualt=25
 --num_epochs
+
 # Int: Number of classes the network is being trained on
 --num_classes
+
 # Float: Adjustable hyperparameter, Default=0.001
 --learning_rate
+
 # Float: Adjustable hyperparameter, Default=0.00
 --weight_decay
+
 # Boolean: Whether to preprocess data in certain ways, Default=False
 --data_augmentation
+
 # String: Choice of 'train_acc', 'train_loss', 'val_acc', 'val_loss' to monitor
 # for saving model checkpoints, Default='val_acc'
 --best_criterion
+
 # String: Path to set of classes to train on, Default=User_Input
 --wnids
+
 # Boolean: True=32x32, False=64x64, Default=False
---resize
+'--resize'
+
 # String: Path to saved model to evaluate accuracy of
---load
+'--load'
 ```
 
 ## Notes To Self
