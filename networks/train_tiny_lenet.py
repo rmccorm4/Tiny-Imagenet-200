@@ -8,6 +8,7 @@ from data_utils import load_tiny_imagenet
 
 from keras import losses
 from keras import initializers
+from keras import optimizers
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential, load_model
 from keras.layers import Dense, Dropout, Activation, Flatten, BatchNormalization
@@ -22,7 +23,7 @@ train_path = os.path.join('work', 'training', 'tiny_imagenet')
 if not os.path.isdir(train_path):
 	os.makedirs(train_path)
 
-def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, wnids='', resize=False, load=''):
+def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, lr=0.001, decay=0.00, wnids='', resize=False, load=''):
 	# Load data
 	if resize:
 		print('resize is true')
@@ -46,10 +47,11 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				model = load_model(load)
 				# Evaluate network accuracy
 				model.compile(loss=losses.categorical_crossentropy, 
-							  optimizer='adam', metrics=['accuracy'])
+							  optimizer=optimizers.adam(lr=lr, decay=decay), 
+							  metrics=['accuracy'])
 				score = model.evaluate(x_val, y_val, batch_size=batch_size)
 				print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
-				return str(score[1]*100)
+				return str(score[1]*100), batch_size, num_epochs, num_classes, lr, decay, resize
 
 			# Otherwise train new network
 			else:
@@ -106,7 +108,8 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 
 				"""Optimizer"""
 				model.compile(loss=losses.categorical_crossentropy, 
-							  optimizer='adam', metrics=['accuracy'])
+							  optimizer=optimizers.adam(lr=lr, decay=decay), 
+							  metrics=['accuracy'])
 	
 				# check model checkpointing callback which saves only the "best" network according to the 'best_criterion' optional argument (defaults to validation loss)
 				sets_index = wnids_path.find('sets')
@@ -199,14 +202,16 @@ if __name__ == '__main__':
 	parser.add_argument('--batch_size', type=int, default=100, help='')
 	parser.add_argument('--num_epochs', type=int, default=25, help='')
 	parser.add_argument('--num_classes', type=int, default=200, help='')
+	parser.add_argument('--learning_rate', type=float, default=0.001, help='')
+	parser.add_argument('--weight_decay', type=float, default=0.00, help='')
 	parser.add_argument('--data_augmentation', type=bool, default=False, help='')
-	parser.add_argument('--best_criterion', type=str, default='val_acc', help='Criterion to consider when choosing the "best" model. Can also use "val_acc", "train_loss", or "train_acc" (and perhaps others?).')
+	parser.add_argument('--best_criterion', type=str, default='val_acc', help='Criterion to consider when choosing the "best" model. Can also use "val_loss", "train_loss", or "train_acc".')
 	parser.add_argument('--wnids', type=str, default='', help='Relative path to wnids file to train on.')
 	parser.add_argument('--resize', type=bool, default=False, help='False = 64x64 images, True=32x32 images')
 	parser.add_argument('--load', type=str, default='', help='Path to saved model to load and evaluate.')
 	
 	args = parser.parse_args()
-	hardware, batch_size, num_epochs, num_classes, data_augmentation, best_criterion, wnids, resize, load = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.data_augmentation, args.best_criterion, args.wnids, args.resize, args.load
+	hardware, batch_size, num_epochs, num_classes, lr, decay, data_augmentation, best_criterion, wnids, resize, load = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.learning_rate, args.weight_decay, args.data_augmentation, args.best_criterion, args.wnids, args.resize, args.load
 
 	# Possibly change num_classes to be a list of specific classes?
-	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, wnids, resize, load)
+	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, lr, decay, wnids, resize, load)
