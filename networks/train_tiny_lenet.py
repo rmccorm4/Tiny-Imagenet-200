@@ -15,6 +15,7 @@ from keras.layers import Dense, Dropout, Activation, Flatten, BatchNormalization
 from keras.layers import Conv2D, MaxPooling2D, AveragePooling2D
 from keras.callbacks import ModelCheckpoint
 from keras.callbacks import EarlyStopping
+from keras.callbacks import CSVLogger
 
 # Suppress compiler warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
@@ -25,11 +26,6 @@ if not os.path.isdir(train_path):
 
 def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, lr=0.001, decay=0.00, wnids='', resize=False, load=''):
 	# Load data
-	if resize:
-		print('resize is true')
-	else:
-		print('resize is false')
-	
 	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize)
 	
 	if hardware == 'gpu':
@@ -38,7 +34,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 		devices = ['/gpu:0', '/gpu:1']
 	else:
 		devices = ['/cpu:0']
-
+	
 	# Run on chosen processors
 	for d in devices:
 		with tf.device(d):
@@ -62,49 +58,35 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  kernel_initializer=initializers.random_uniform(minval=-0.01, maxval=0.01),
 						  bias_initializer='zeros',
 						  input_shape=x_train.shape[1:]))
-				print(model.layers[-1].output_shape)
 				model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-				print(model.layers[-1].output_shape)
 				model.add(Activation('relu'))
-				print(model.layers[-1].output_shape)
 				
 				"""Block 2"""
 				model.add(Conv2D(32, (5, 5), strides=(1,1), padding='same',
 						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
 						  bias_initializer='zeros'))
-				print(model.layers[-1].output_shape)
 				model.add(Activation('relu'))
-				print(model.layers[-1].output_shape)
 				model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-				print(model.layers[-1].output_shape)
 				
 				"""Block 3"""
 				model.add(Conv2D(64, (5, 5), strides=(1,1), padding='same',
 						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
 						  bias_initializer='zeros'))
 
-				print(model.layers[-1].output_shape)
 				model.add(Activation('relu'))
-				print(model.layers[-1].output_shape)
 				model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-				print(model.layers[-1].output_shape)
 
 				"""Fully Connected Layer and ReLU"""
 				model.add(Flatten())
-				print(model.layers[-1].output_shape)
 				model.add(Activation('relu'))
-				print(model.layers[-1].output_shape)
 				
 				"""Output Layer"""
 				model.add(Dense(num_classes,
 						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
 						  bias_initializer='zeros'))
 
-				print(model.layers[-1].output_shape)
-
 				"""Loss Layer"""
 				model.add(Activation('softmax'))
-				print(model.layers[-1].output_shape)
 
 				"""Optimizer"""
 				model.compile(loss=losses.categorical_crossentropy, 
@@ -118,8 +100,9 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				if not os.path.exists(outpath):
 					os.makedirs(outpath)
 
-				model_checkpoint = ModelCheckpoint(outfile, monitor=best_criterion, save_best_only=True)
+				model_checkpoint = ModelCheckpoint(outfile, verbose=1, monitor=best_criterion, save_best_only=True)
 				early_stop = EarlyStopping(patience=3)
+				logger = CSVLogger(outpath+'log.csv')
 
 				if not data_augmentation:
 					print('Not using data augmentation.')
@@ -129,7 +112,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  epochs=num_epochs,
 						  validation_data=(x_val, y_val),
 						  shuffle=True, 
-						  callbacks=[model_checkpoint, early_stop])
+						  callbacks=[model_checkpoint, early_stop, logger])
 				else:
 					print('Using real-time data augmentation.')
 					# This will do preprocessing and realtime data augmentation:
@@ -156,7 +139,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 									steps_per_epoch=x_train.shape[0] // batch_size,
 									epochs=num_epochs,
 									validation_data=(x_val, y_val),
-									callbacks=[model_checkpoint, early_stop])
+									callbacks=[model_checkpoint, early_stop, logger])
 				
 				return 'New network trained!'
 
