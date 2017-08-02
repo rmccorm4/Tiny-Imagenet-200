@@ -128,6 +128,9 @@ how to set these values similarly to how matconvnet does it.
 * Figure out how to check accuracy from saved model
 	* Worst case run validation images through trained network again?
 
+* Totally clean up network code and figure out how to extract important
+network information from saved models or use callbacks/manually code it
+
 IDEAS:
 * Train a network to learn best classes to put together in a set?
 * Without using a network, recursively train a network, get the best classes
