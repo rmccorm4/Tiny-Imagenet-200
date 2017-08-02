@@ -14,7 +14,7 @@ from keras.models import Sequential, load_model
 from keras.layers import Dense, Dropout, Activation, Flatten, BatchNormalization
 from keras.layers import Conv2D, MaxPooling2D, AveragePooling2D
 from keras.callbacks import ModelCheckpoint
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import EarlyStopping
 
 # Suppress compiler warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
@@ -119,6 +119,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 					os.makedirs(outpath)
 
 				model_checkpoint = ModelCheckpoint(outfile, monitor=best_criterion, save_best_only=True)
+				early_stop = EarlyStopping(patience=3)
 
 				if not data_augmentation:
 					print('Not using data augmentation.')
@@ -128,7 +129,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  epochs=num_epochs,
 						  validation_data=(x_val, y_val),
 						  shuffle=True, 
-						  callbacks=[model_checkpoint])
+						  callbacks=[model_checkpoint, early_stop])
 				else:
 					print('Using real-time data augmentation.')
 					# This will do preprocessing and realtime data augmentation:
@@ -155,7 +156,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 									steps_per_epoch=x_train.shape[0] // batch_size,
 									epochs=num_epochs,
 									validation_data=(x_val, y_val),
-									callbacks=[model_checkpoint])
+									callbacks=[model_checkpoint, early_stop])
 				
 				return 'New network trained!'
 
@@ -167,25 +168,7 @@ def process_images(wnids_path='', resize=False, num_classes=10):
 	print(wnids_path)
 	# Generate data fields - test data has no labels so ignore it
 	classes, x_train, y_train, x_val, y_val = load_tiny_imagenet(os.path.join('tiny-imagenet-200'), wnids_path, num_classes=num_classes, resize=resize)
-	# Get number of classes specified in order from [0, num_classes)
-	print(classes)
-	#print(x_train)
-	print(x_train.shape)
-	print(y_train.shape)
-
-	"""
-	if num_classes > 200:
-		print('Set number of classes to maximum of 200\n')
-		num_classes = 200
-	elif num_classes != 200:
-		train_indices = [index for index, label in enumerate(y_train) if label < num_classes]
-		val_indices = [index for index, label in enumerate(y_val) if label < num_classes]
-		x_train = x_train[train_indices]
-		y_train = y_train[train_indices]
-		x_val = x_val[val_indices]
-		y_val = y_val[val_indices]
-	"""
-
+	
 	# Format data to be the correct shape
 	x_train = np.einsum('iljk->ijkl', x_train)
 	x_val = np.einsum('iljk->ijkl', x_val)
