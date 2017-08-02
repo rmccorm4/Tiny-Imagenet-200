@@ -19,9 +19,17 @@ if __name__ == '__main__':
 		
 		classes = str(classes).replace(',', '')
 		model_path = os.path.join('work', 'training', 'tiny_imagenet', 'sets', set_path, 'best_weights_val_acc.hdf5')
-		#accuracy = '%.2f%%' % float(train_tiny_imagenet(wnids=set_path, resize=True, load=model_path))
 		
+		# ADD CODE HERE TO LOOP THROUGH EVERY HDF5 FILE IN SET DIRECTORY AND
+		# EVALUATE THEM ALL TO WRITE TO CSV FILE
+
+		# MAYBE ADD SOMETHING TO CHECK IF FILE WAS ALREADY WRITTEN TO TABLE
+		# OR NOT
+
 		# Get important network information for table
+		
+		# THIS IS WRONG, THESE WILL ALWAYS BE DEFAULT VALUES, NEED TO GET IT
+		# FROM LOADED MODEL SOMEHOW
 		accuracy, batch_size, num_epochs, num_classes, lr, decay, resize = train_tiny_imagenet(wnids=set_path, resize=True, load=model_path)
 		accuracy = '%.2f%%' % float(accuracy)
 		
