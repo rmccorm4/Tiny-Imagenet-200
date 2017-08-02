@@ -110,10 +110,10 @@ python networks/train_tiny_lenet.py
 --wnids
 
 # Boolean: True=32x32, False=64x64, Default=False
-'--resize'
+--resize
 
 # String: Path to saved model to evaluate accuracy of
-'--load'
+--load
 ```
 
 ## Notes To Self
