@@ -1,0 +1,2 @@
+SET,CLASSES,ACCURACY,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
+random/0,['hog' 'kimono' 'monarch' 'crane' 'Yorkshire terrier' 'sombrero' 'freight car' 'wok' 'sulphur butterfly' 'barn'],58.60%,100,25,10,0.001,0.0,32x32x3

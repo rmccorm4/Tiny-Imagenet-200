@@ -8,12 +8,14 @@ from data_utils import load_tiny_imagenet
 
 from keras import losses
 from keras import initializers
+from keras import optimizers
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential, load_model
 from keras.layers import Dense, Dropout, Activation, Flatten, BatchNormalization
 from keras.layers import Conv2D, MaxPooling2D, AveragePooling2D
 from keras.callbacks import ModelCheckpoint
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import EarlyStopping
+from keras.callbacks import CSVLogger
 
 # Suppress compiler warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
@@ -22,13 +24,8 @@ train_path = os.path.join('work', 'training', 'tiny_imagenet')
 if not os.path.isdir(train_path):
 	os.makedirs(train_path)
 
-def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, wnids='', resize=False, load=''):
+def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, lr=0.001, decay=0.00, wnids='', resize=False, load=''):
 	# Load data
-	if resize:
-		print('resize is true')
-	else:
-		print('resize is false')
-	
 	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize)
 	
 	if hardware == 'gpu':
@@ -37,7 +34,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 		devices = ['/gpu:0', '/gpu:1']
 	else:
 		devices = ['/cpu:0']
-
+	
 	# Run on chosen processors
 	for d in devices:
 		with tf.device(d):
@@ -46,10 +43,11 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				model = load_model(load)
 				# Evaluate network accuracy
 				model.compile(loss=losses.categorical_crossentropy, 
-							  optimizer='adam', metrics=['accuracy'])
+							  optimizer=optimizers.adam(lr=lr, decay=decay), 
+							  metrics=['accuracy'])
 				score = model.evaluate(x_val, y_val, batch_size=batch_size)
 				print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
-				return str(score[1]*100)
+				return str(score[1]*100), batch_size, num_epochs, num_classes, lr, decay, resize
 
 			# Otherwise train new network
 			else:
@@ -60,53 +58,40 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  kernel_initializer=initializers.random_uniform(minval=-0.01, maxval=0.01),
 						  bias_initializer='zeros',
 						  input_shape=x_train.shape[1:]))
-				print(model.layers[-1].output_shape)
 				model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-				print(model.layers[-1].output_shape)
 				model.add(Activation('relu'))
-				print(model.layers[-1].output_shape)
 				
 				"""Block 2"""
 				model.add(Conv2D(32, (5, 5), strides=(1,1), padding='same',
 						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
 						  bias_initializer='zeros'))
-				print(model.layers[-1].output_shape)
 				model.add(Activation('relu'))
-				print(model.layers[-1].output_shape)
 				model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-				print(model.layers[-1].output_shape)
 				
 				"""Block 3"""
 				model.add(Conv2D(64, (5, 5), strides=(1,1), padding='same',
 						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
 						  bias_initializer='zeros'))
 
-				print(model.layers[-1].output_shape)
 				model.add(Activation('relu'))
-				print(model.layers[-1].output_shape)
 				model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-				print(model.layers[-1].output_shape)
 
 				"""Fully Connected Layer and ReLU"""
 				model.add(Flatten())
-				print(model.layers[-1].output_shape)
 				model.add(Activation('relu'))
-				print(model.layers[-1].output_shape)
 				
 				"""Output Layer"""
 				model.add(Dense(num_classes,
 						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
 						  bias_initializer='zeros'))
 
-				print(model.layers[-1].output_shape)
-
 				"""Loss Layer"""
 				model.add(Activation('softmax'))
-				print(model.layers[-1].output_shape)
 
 				"""Optimizer"""
 				model.compile(loss=losses.categorical_crossentropy, 
-							  optimizer='adam', metrics=['accuracy'])
+							  optimizer=optimizers.adam(lr=lr, decay=decay), 
+							  metrics=['accuracy'])
 	
 				# check model checkpointing callback which saves only the "best" network according to the 'best_criterion' optional argument (defaults to validation loss)
 				sets_index = wnids_path.find('sets')
@@ -115,7 +100,9 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				if not os.path.exists(outpath):
 					os.makedirs(outpath)
 
-				model_checkpoint = ModelCheckpoint(outfile, monitor=best_criterion, save_best_only=True)
+				model_checkpoint = ModelCheckpoint(outfile, verbose=1, monitor=best_criterion, save_best_only=True)
+				early_stop = EarlyStopping(patience=3)
+				logger = CSVLogger(outpath+'log.csv')
 
 				if not data_augmentation:
 					print('Not using data augmentation.')
@@ -125,7 +112,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  epochs=num_epochs,
 						  validation_data=(x_val, y_val),
 						  shuffle=True, 
-						  callbacks=[model_checkpoint])
+						  callbacks=[model_checkpoint, early_stop, logger])
 				else:
 					print('Using real-time data augmentation.')
 					# This will do preprocessing and realtime data augmentation:
@@ -152,7 +139,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 									steps_per_epoch=x_train.shape[0] // batch_size,
 									epochs=num_epochs,
 									validation_data=(x_val, y_val),
-									callbacks=[model_checkpoint])
+									callbacks=[model_checkpoint, early_stop, logger])
 				
 				return 'New network trained!'
 
@@ -164,25 +151,7 @@ def process_images(wnids_path='', resize=False, num_classes=10):
 	print(wnids_path)
 	# Generate data fields - test data has no labels so ignore it
 	classes, x_train, y_train, x_val, y_val = load_tiny_imagenet(os.path.join('tiny-imagenet-200'), wnids_path, num_classes=num_classes, resize=resize)
-	# Get number of classes specified in order from [0, num_classes)
-	print(classes)
-	#print(x_train)
-	print(x_train.shape)
-	print(y_train.shape)
-
-	"""
-	if num_classes > 200:
-		print('Set number of classes to maximum of 200\n')
-		num_classes = 200
-	elif num_classes != 200:
-		train_indices = [index for index, label in enumerate(y_train) if label < num_classes]
-		val_indices = [index for index, label in enumerate(y_val) if label < num_classes]
-		x_train = x_train[train_indices]
-		y_train = y_train[train_indices]
-		x_val = x_val[val_indices]
-		y_val = y_val[val_indices]
-	"""
-
+	
 	# Format data to be the correct shape
 	x_train = np.einsum('iljk->ijkl', x_train)
 	x_val = np.einsum('iljk->ijkl', x_val)
@@ -199,14 +168,16 @@ if __name__ == '__main__':
 	parser.add_argument('--batch_size', type=int, default=100, help='')
 	parser.add_argument('--num_epochs', type=int, default=25, help='')
 	parser.add_argument('--num_classes', type=int, default=200, help='')
+	parser.add_argument('--learning_rate', type=float, default=0.001, help='')
+	parser.add_argument('--weight_decay', type=float, default=0.00, help='')
 	parser.add_argument('--data_augmentation', type=bool, default=False, help='')
-	parser.add_argument('--best_criterion', type=str, default='val_acc', help='Criterion to consider when choosing the "best" model. Can also use "val_acc", "train_loss", or "train_acc" (and perhaps others?).')
+	parser.add_argument('--best_criterion', type=str, default='val_acc', help='Criterion to consider when choosing the "best" model. Can also use "val_loss", "train_loss", or "train_acc".')
 	parser.add_argument('--wnids', type=str, default='', help='Relative path to wnids file to train on.')
 	parser.add_argument('--resize', type=bool, default=False, help='False = 64x64 images, True=32x32 images')
 	parser.add_argument('--load', type=str, default='', help='Path to saved model to load and evaluate.')
 	
 	args = parser.parse_args()
-	hardware, batch_size, num_epochs, num_classes, data_augmentation, best_criterion, wnids, resize, load = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.data_augmentation, args.best_criterion, args.wnids, args.resize, args.load
+	hardware, batch_size, num_epochs, num_classes, lr, decay, data_augmentation, best_criterion, wnids, resize, load = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.learning_rate, args.weight_decay, args.data_augmentation, args.best_criterion, args.wnids, args.resize, args.load
 
 	# Possibly change num_classes to be a list of specific classes?
-	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, wnids, resize, load)
+	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, lr, decay, wnids, resize, load)
