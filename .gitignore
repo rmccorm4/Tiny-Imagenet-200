@@ -5,3 +5,6 @@ tiny-imagenet-200/
 sets/random/*
 *boxes*.txt
 *.hdf5
+*.pyc
+__pycache__
+networks/__pycache__

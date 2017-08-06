@@ -48,9 +48,9 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				# Evaluate network accuracy
 
 				# Check if model needs to be compiled to evaluate?
-				model.compile(loss=losses.categorical_crossentropy, 
-							  optimizer=optimizers.adam(lr=lr, decay=decay), 
-							  metrics=['accuracy'])
+				#model.compile(loss=losses.categorical_crossentropy, 
+				#			  optimizer=optimizers.adam(lr=lr, decay=decay), 
+				#			  metrics=['accuracy'])
 				
 				# Run validation set through loaded network
 				score = model.evaluate(x_val, y_val, batch_size=batch_size)
@@ -104,12 +104,13 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				sets_index = wnids_path.find('sets')
 				outpath = os.path.join(train_path, wnids_path[sets_index:])
 				model_outfile = os.path.join(outpath, '{batch_size}_{num_epochs}_{num_classes}_{lr:.5f}_{decay:.2f}_{resize}_best_{criteria}_model.hdf5')
+				csv_outfile = os.path.join(outpath, '{batch_size}_{num_epochs}_{num_classes}_{lr:.5f}_{decay:.2f}_{resize}_best_{criteria}_log.csv')
 				if not os.path.exists(outpath):
 					os.makedirs(outpath)
 
 				# Callbacks to save important network information
 				model_checkpoint = ModelCheckpoint(model_outfile, monitor=criteria, save_best_only=True)
-				logger = CSVLogger(os.path.join(outpath, '{batch_size}_{num_epochs}_{num_classes}_{lr:.5f}_{decay:.2f}_{resize}_best_{criteria}_log.csv'))
+				logger = CSVLogger(csv_outfile)
 				callbacks = [model_checkpoint, logger]
 
 				if not data_augmentation:
@@ -147,7 +148,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 									steps_per_epoch=x_train.shape[0] // batch_size,
 									epochs=num_epochs,
 									validation_data=(x_val, y_val),
-									callbacks=[model_checkpoint, early_stop, logger])
+									callbacks=callbacks)
 				
 				return 'New network trained!'
 
