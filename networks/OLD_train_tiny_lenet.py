@@ -1,36 +1,33 @@
 import os
 import sys
 import keras
-import pickle
 import argparse
 import numpy as np
 import tensorflow as tf
 from data_utils import load_tiny_imagenet
 
 from keras import losses
-from keras import optimizers
 from keras import initializers
-from keras.callbacks import CSVLogger
-from keras.callbacks import ModelCheckpoint
-from keras.models import Sequential, load_model
+from keras import optimizers
 from keras.preprocessing.image import ImageDataGenerator
-from keras.layers import Conv2D, MaxPooling2D, AveragePooling2D
+from keras.models import Sequential, load_model
 from keras.layers import Dense, Dropout, Activation, Flatten, BatchNormalization
+from keras.layers import Conv2D, MaxPooling2D, AveragePooling2D
+from keras.callbacks import ModelCheckpoint
+from keras.callbacks import EarlyStopping
+from keras.callbacks import CSVLogger
 
 # Suppress compiler warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
-
 # Path to put computed activations/best epoch
 train_path = os.path.join('work', 'training', 'tiny_imagenet')
 if not os.path.isdir(train_path):
 	os.makedirs(train_path)
 
-# Train network
 def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, lr=0.001, decay=0.00, wnids='', resize=False, load=''):
 	# Load data
-	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize, num_classes)
+	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize)
 	
-	# Choose seleted hardware, default to CPU
 	if hardware == 'gpu':
 		devices = ['/gpu:0']
 	elif hardware == '2gpu':
@@ -44,15 +41,10 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 			# Load saved model and check its accuracy if optional arg passed
 			if load != '':
 				model = load_model(load)
-				
 				# Evaluate network accuracy
-
-				# Check if model needs to be compiled to evaluate?
 				model.compile(loss=losses.categorical_crossentropy, 
 							  optimizer=optimizers.adam(lr=lr, decay=decay), 
 							  metrics=['accuracy'])
-				
-				# Run validation set through loaded network
 				score = model.evaluate(x_val, y_val, batch_size=batch_size)
 				print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
 				return str(score[1]*100), batch_size, num_epochs, num_classes, lr, decay, resize
@@ -80,6 +72,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				model.add(Conv2D(64, (5, 5), strides=(1,1), padding='same',
 						  kernel_initializer=initializers.random_uniform(minval=-0.05, maxval=0.05),
 						  bias_initializer='zeros'))
+
 				model.add(Activation('relu'))
 				model.add(AveragePooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
 
@@ -100,17 +93,17 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 							  optimizer=optimizers.adam(lr=lr, decay=decay), 
 							  metrics=['accuracy'])
 	
-				# check model checkpointing callback which saves only the "best" network according to the 'criteria' optional argument
+				# check model checkpointing callback which saves only the "best" network according to the 'best_criterion' optional argument (defaults to validation loss)
 				sets_index = wnids_path.find('sets')
-				outpath = os.path.join(train_path, wnids_path[sets_index:])
-				model_outfile = os.path.join(outpath, '{batch_size}_{num_epochs}_{num_classes}_{lr:.5f}_{decay:.2f}_{resize}_best_{criteria}_model.hdf5')
+				outpath = train_path + '/' + wnids_path[sets_index:] + '/'
+				outfile = outpath + 'best_weights_' + best_criterion + '.hdf5'	
 				if not os.path.exists(outpath):
 					os.makedirs(outpath)
 
 				# Callbacks to save important network information
-				model_checkpoint = ModelCheckpoint(model_outfile, monitor=criteria, save_best_only=True)
-				logger = CSVLogger(os.path.join(outpath, '{batch_size}_{num_epochs}_{num_classes}_{lr:.5f}_{decay:.2f}_{resize}_best_{criteria}_log.csv'))
-				callbacks = [model_checkpoint, logger]
+				model_checkpoint = ModelCheckpoint(outfile, verbose=1, monitor=best_criterion, save_best_only=True)
+				early_stop = EarlyStopping(patience=3)
+				logger = CSVLogger(outpath+'log.csv')
 
 				if not data_augmentation:
 					print('Not using data augmentation.')
@@ -120,7 +113,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  epochs=num_epochs,
 						  validation_data=(x_val, y_val),
 						  shuffle=True, 
-						  callbacks=callbacks)
+						  callbacks=[model_checkpoint, early_stop, logger])
 				else:
 					print('Using real-time data augmentation.')
 					# This will do preprocessing and realtime data augmentation:
@@ -151,13 +144,12 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				
 				return 'New network trained!'
 
-def process_images(wnids_path='', resize=False, num_classes=200):
+def process_images(wnids_path='', resize=False, num_classes=10):
 	# Path to tiny imagenet dataset
 	if wnids_path == '':
 		wnids_path = input('Enter the relative path to the directory containing the wnids/words files from sets/: ')
 	wnids_path = os.path.join('..', 'sets', wnids_path)
 	print(wnids_path)
-	
 	# Generate data fields - test data has no labels so ignore it
 	classes, x_train, y_train, x_val, y_val = load_tiny_imagenet(os.path.join('tiny-imagenet-200'), wnids_path, num_classes=num_classes, resize=resize)
 	
@@ -171,7 +163,6 @@ def process_images(wnids_path='', resize=False, num_classes=200):
 
 	return x_train, y_train, x_val, y_val, wnids_path
 
-# If running this file standalone
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Train a convolutional neural network on the Tiny-Imagenet dataset.')
 	parser.add_argument('--hardware', type=str, default='cpu', help='cpu, gpu, or 2gpu currently supported.')
@@ -181,13 +172,13 @@ if __name__ == '__main__':
 	parser.add_argument('--learning_rate', type=float, default=0.001, help='')
 	parser.add_argument('--weight_decay', type=float, default=0.00, help='')
 	parser.add_argument('--data_augmentation', type=bool, default=False, help='')
-	parser.add_argument('--criteria', type=str, default='val_loss', help='Criteria to consider when choosing the "best" model. Can also use "val_acc", "train_loss", or "train_acc".')
+	parser.add_argument('--best_criterion', type=str, default='val_acc', help='Criterion to consider when choosing the "best" model. Can also use "val_loss", "train_loss", or "train_acc".')
 	parser.add_argument('--wnids', type=str, default='', help='Relative path to wnids file to train on.')
 	parser.add_argument('--resize', type=bool, default=False, help='False = 64x64 images, True=32x32 images')
 	parser.add_argument('--load', type=str, default='', help='Path to saved model to load and evaluate.')
 	
 	args = parser.parse_args()
-	hardware, batch_size, num_epochs, num_classes, lr, decay, data_augmentation, criteria, wnids, resize, load = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.learning_rate, args.weight_decay, args.data_augmentation, args.criteria, args.wnids, args.resize, args.load
+	hardware, batch_size, num_epochs, num_classes, lr, decay, data_augmentation, best_criterion, wnids, resize, load = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.learning_rate, args.weight_decay, args.data_augmentation, args.best_criterion, args.wnids, args.resize, args.load
 
 	# Possibly change num_classes to be a list of specific classes?
 	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, lr, decay, wnids, resize, load)
