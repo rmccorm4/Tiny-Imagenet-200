@@ -49,7 +49,7 @@ python utils/produce_files.py
 
 and by following the prompts.
 
-## Running Code
+## Traning Network
 
 Currently, everything is meant to be run from the highest level directory
 of this repository. Paths could be incorrect if you run code from the directory
@@ -76,6 +76,15 @@ when simply executing and default values for most parameters will be set:
 
 ```
 python networks/train_tiny_lenet.py
+```
+
+## Evaluating Trained Network
+
+To evaluate the accuracy of a network that's already been trained, you can use 
+the `--load` optional argument as demonstrated below
+
+```
+python networks/train_tiny_lenet.py --resize=True --num_classes=10 --wnids='random/0' --load='work/training/tiny_imagenet/sets/random/0/best_weights_val_acc.hdf5'
 ```
 
 ### Tweakable Parameters
