@@ -35,7 +35,11 @@ if __name__ == '__main__':
 						   'decay' : params[4], 'resize' : bool(params[5]),
 						   'normalize' : params[6]}
 				
-				accuracy = train_tiny_imagenet(wnids=set_path, resize=network['resize'], load=os.path.join(model_path, model))
+				print(network['normalize'])
+				accuracy = train_tiny_imagenet(wnids=set_path, 
+											   resize=network['resize'], 
+											   load=os.path.join(model_path, model)) 
+											   #normalize=network['normalize'])
 				accuracy = '%.2f%%' % float(accuracy)
 
 				if network['resize']:	

@@ -31,6 +31,9 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25,
 						resize=False, load='', normalize=False):
 	# Load data
 	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize, num_classes, normalize)
+	print(normalize)
+	print(load)
+	print(normalize)
 	
 	# Choose seleted hardware, default to CPU
 	if hardware == 'gpu':
@@ -46,14 +49,6 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25,
 			# Load saved model and check its accuracy if optional arg passed
 			if load != '':
 				model = load_model(load)
-				
-				# Evaluate network accuracy
-
-				# Check if model needs to be compiled to evaluate?
-				#model.compile(loss=losses.categorical_crossentropy, 
-				#			  optimizer=optimizers.adam(lr=lr, decay=decay), 
-				#			  metrics=['accuracy'])
-				
 				# Run validation set through loaded network
 				score = model.evaluate(x_val, y_val, batch_size=batch_size)
 				print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
@@ -114,8 +109,9 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25,
 				if not os.path.exists(outpath):
 					os.makedirs(outpath)
 
-				# Callbacks to save important network information
+				# Save network state from the best <criteria> of all epochs ran
 				model_checkpoint = ModelCheckpoint(model_outfile, monitor=criteria, save_best_only=True)
+				# Log information from each epoch to a csv file
 				logger = CSVLogger(csv_outfile)
 				callback_list = [model_checkpoint, logger]
 
@@ -192,7 +188,7 @@ if __name__ == '__main__':
 	parser.add_argument('--learning_rate', type=float, default=0.001, help='')
 	parser.add_argument('--weight_decay', type=float, default=0.00, help='')
 	parser.add_argument('--data_augmentation', type=bool, default=False, help='')
-	parser.add_argument('--criteria', type=str, default='val_loss', help='Criteria to consider when choosing the "best" model. Can also use "val_acc", "train_loss", or "train_acc".')
+	parser.add_argument('--criteria', type=str, default='val_acc', help='Criteria to consider when choosing the "best" model. Can also use "val_loss", "train_loss", or "train_acc".')
 	parser.add_argument('--wnids', type=str, default='', help='Relative path to wnids file to train on.')
 	parser.add_argument('--resize', type=bool, default=False, help='False = 64x64 images, True=32x32 images')
 	parser.add_argument('--load', type=str, default='', help='Path to saved model to load and evaluate.')
