@@ -26,9 +26,11 @@ if not os.path.isdir(train_path):
 	os.makedirs(train_path)
 
 # Train network
-def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_classes=10, lr=0.001, decay=0.00, wnids='', resize=False, load=''):
+def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, 
+						num_classes=10, lr=0.001, decay=0.00, wnids='', 
+						resize=False, load='', normalize=False):
 	# Load data
-	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize, num_classes)
+	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize, num_classes, normalize)
 	
 	# Choose seleted hardware, default to CPU
 	if hardware == 'gpu':
@@ -55,7 +57,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				# Run validation set through loaded network
 				score = model.evaluate(x_val, y_val, batch_size=batch_size)
 				print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
-				return str(score[1]*100), batch_size, num_epochs, num_classes, lr, decay, resize
+				return str(score[1]*100)
 
 			# Otherwise train new network
 			else:
@@ -103,15 +105,19 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				# check model checkpointing callback which saves only the "best" network according to the 'criteria' optional argument
 				sets_index = wnids_path.find('sets')
 				outpath = os.path.join(train_path, wnids_path[sets_index:])
-				model_outfile = os.path.join(outpath, '{batch_size}_{num_epochs}_{num_classes}_{lr:.5f}_{decay:.2f}_{resize}_best_{criteria}_model.hdf5')
-				csv_outfile = os.path.join(outpath, '{batch_size}_{num_epochs}_{num_classes}_{lr:.5f}_{decay:.2f}_{resize}_best_{criteria}_log.csv')
+				# Naming file by hyperparameters
+				prefix = '%d_%d_%d_%.5f_%.2f_%s_%s_best_%s_' % (batch_size, num_epochs, num_classes, lr, decay, resize, normalize, criteria)
+				model_outfile = os.path.join(outpath, prefix + 'model.hdf5')
+				csv_outfile = os.path.join(outpath, prefix + 'log.csv')
+				print(model_outfile)
+				print(csv_outfile)
 				if not os.path.exists(outpath):
 					os.makedirs(outpath)
 
 				# Callbacks to save important network information
 				model_checkpoint = ModelCheckpoint(model_outfile, monitor=criteria, save_best_only=True)
 				logger = CSVLogger(csv_outfile)
-				callbacks = [model_checkpoint, logger]
+				callback_list = [model_checkpoint, logger]
 
 				if not data_augmentation:
 					print('Not using data augmentation.')
@@ -121,7 +127,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 						  epochs=num_epochs,
 						  validation_data=(x_val, y_val),
 						  shuffle=True, 
-						  callbacks=callbacks)
+						  callbacks=callback_list)
 				else:
 					print('Using real-time data augmentation.')
 					# This will do preprocessing and realtime data augmentation:
@@ -152,7 +158,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, num_class
 				
 				return 'New network trained!'
 
-def process_images(wnids_path='', resize=False, num_classes=200):
+def process_images(wnids_path='', resize=False, num_classes=200, normalize=False):
 	# Path to tiny imagenet dataset
 	if wnids_path == '':
 		wnids_path = input('Enter the relative path to the directory containing the wnids/words files from sets/: ')
@@ -165,6 +171,10 @@ def process_images(wnids_path='', resize=False, num_classes=200):
 	# Format data to be the correct shape
 	x_train = np.einsum('iljk->ijkl', x_train)
 	x_val = np.einsum('iljk->ijkl', x_val)
+
+	if normalize:
+		x_train /= 255
+		x_val /= 255
 
 	# Convert labels to one hot vectors
 	y_train = keras.utils.to_categorical(y_train, num_classes)
@@ -186,9 +196,10 @@ if __name__ == '__main__':
 	parser.add_argument('--wnids', type=str, default='', help='Relative path to wnids file to train on.')
 	parser.add_argument('--resize', type=bool, default=False, help='False = 64x64 images, True=32x32 images')
 	parser.add_argument('--load', type=str, default='', help='Path to saved model to load and evaluate.')
+	parser.add_argument('--normalize', type=bool, default=False, help='Path to saved model to load and evaluate.')
 	
 	args = parser.parse_args()
-	hardware, batch_size, num_epochs, num_classes, lr, decay, data_augmentation, criteria, wnids, resize, load = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.learning_rate, args.weight_decay, args.data_augmentation, args.criteria, args.wnids, args.resize, args.load
+	hardware, batch_size, num_epochs, num_classes, lr, decay, data_augmentation, criteria, wnids, resize, load, normalize = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.learning_rate, args.weight_decay, args.data_augmentation, args.criteria, args.wnids, args.resize, args.load, args.normalize
 
 	# Possibly change num_classes to be a list of specific classes?
-	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, lr, decay, wnids, resize, load)
+	train_tiny_imagenet(hardware, batch_size, num_epochs, num_classes, lr, decay, wnids, resize, load, normalize)

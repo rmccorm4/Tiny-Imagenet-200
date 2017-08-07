@@ -1,11 +1,12 @@
-SET,CLASSES,ACCURACY
-random/0,['walking stick' 'teapot' 'Chihuahua' 'fountain' 'dining table' 'guinea pig' 'altar' 'water tower' 'fly' 'vestment'],10.00%
-random/1,['banana' 'gondola' 'reel' 'mashed potato' 'bee' 'sewing machine' 'Chihuahua' 'cockroach' 'pretzel' 'spider web'],10.00%
-random/2,['Arabian camel' 'reel' 'cannon' 'golden retriever' 'organ' 'brass' 'sandal' 'banana' 'oboe' 'Christmas stocking'],10.00%
-random/3,['reel' 'pole' 'ladybug' 'Labrador retriever' 'coral reef' 'CD player' 'rocking chair' 'fur coat' 'German shepherd' 'sports car'],10.00%
-random/4,['candle' 'American alligator' 'academic gown' 'tabby' 'brown bear' 'albatross' 'chimpanzee' 'triumphal arch' 'hog' 'ox'],12.60%
-random/5,['apron' 'jinrikisha' 'freight car' 'grasshopper' 'chest' 'academic gown' 'candle' 'mashed potato' 'refrigerator' 'lampshade'],11.40%
-random/6,"['banana' 'reel' 'vestment' 'European fire salamander' 'confectionery' 'barrel' 'bell pepper' 'swimming trunks' ""potter's wheel"" 'Labrador retriever']",10.00%
-random/7,['freight car' 'pretzel' 'chest' 'teapot' 'maypole' 'fur coat' 'potpie' 'American lobster' 'bow tie' 'brown bear'],8.00%
-random/8,['mantis' 'lampshade' 'tractor' 'pay-phone' 'king penguin' 'beaker' 'cougar' 'cliff dwelling' 'baboon' 'confectionery'],10.00%
-random/9,['lion' 'plate' 'hourglass' 'viaduct' 'pill bottle' 'drumstick' 'snail' 'flagpole' 'vestment' 'maypole'],10.00%
+SET,CLASSES,ACCURACY,NORMALIZE,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
+random/0,['hog' 'kimono' 'monarch' 'crane' 'Yorkshire terrier' 'sombrero' 'freight car' 'wok' 'sulphur butterfly' 'barn'],59.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1,['baboon' 'moving van' 'CD player' 'Egyptian cat' 'grasshopper' 'Labrador retriever' 'walking stick' 'sock' 'rocking chair' 'sea slug'],43.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/2,['ice cream' 'Christmas stocking' 'ox' 'refrigerator' 'gasmask' 'bullet train' 'orangutan' 'Labrador retriever' 'water jug' 'beer bottle'],44.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/3,['scoreboard' 'pole' 'umbrella' 'albatross' 'bighorn' 'turnstile' 'triumphal arch' 'gondola' 'sandal' 'cauliflower'],46.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/4,['lifeboat' 'jellyfish' 'boa constrictor' 'fur coat' 'alp' 'plunger' 'espresso' 'cliff' 'bullet train' 'ladybug'],64.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/5,"['military uniform' ""potter's wheel"" 'convertible' 'limousine' 'mashed potato' 'umbrella' 'bannister' 'wooden spoon' 'sombrero' 'cardigan']",42.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/6,['Chihuahua' 'wooden spoon' 'school bus' 'bikini' 'bullfrog' 'military uniform' 'bell pepper' 'desk' 'water jug' 'butcher shop'],50.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/7,['golden retriever' 'scoreboard' 'black stork' 'bee' 'maypole' 'orangutan' 'beaker' 'dumbbell' 'turnstile' 'trilobite'],51.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/8,['ox' 'backpack' 'dumbbell' 'jellyfish' 'meat loaf' 'boa constrictor' 'drumstick' 'snail' 'rugby ball' 'tractor'],48.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/9,['pole' 'orange' 'thatch' 'remote control' 'water jug' 'bucket' 'suspension bridge' 'computer keyboard' 'torch' 'projectile'],40.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/10,['backpack' 'black widow' 'plate' 'Labrador retriever' 'dining table' 'chimpanzee' 'freight car' 'European fire salamander' 'umbrella' 'vestment'],51.60%,False,100,25,10,0.00100,0.00,32x32x3
