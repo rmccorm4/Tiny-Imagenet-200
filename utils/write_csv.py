@@ -24,7 +24,6 @@ if __name__ == '__main__':
 		model_path = os.path.join('work', 'training', 'tiny_imagenet', 'sets', set_path)
 		models = os.listdir(model_path)
 
-		print(models)
 		for model in models:
 			if 'hdf5' in model:
 				print(model)
