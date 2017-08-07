@@ -1,25 +1,27 @@
 # Tiny-Imagenet-200
 
-For the sake of speed in cloning/pushing/pulling to this repository,
-I've added the Tiny-Imagenet-200 dataset to the gitignore.
+This repository is my research code for exploration of Convolutional Neural
+Networks, specifically on the Tiny-Imagenet-200 dataset. I plan to start
+small with subsets of 10 classes to benchmark against CIFAR-10, then
+eventually expand to larger and larger subsets, making my way up to all
+200 classes to compare against [Stanford's CS231N results](https://tiny-imagenet.herokuapp.com/).
 
 ---
-## [Table of Contents]
+## Table of Contents
 
-### [1. Getting Started]
+### 1. Getting Started
 
-### [2. Setting Up Your Environment]
-
+### 2. Setting Up Your Environment
 * Pip
 * Anaconda
 
-### [3. Creating Class Sets]
+### 3. Creating Class Sets
 
-### [4. Training Network]
+### 4. Training Network
 
-### [5. Evaluating Trained Network]
+### 5. Evaluating Trained Network
 
-### [6. Tweakable Parameters]
+### 6. Tweakable Parameters
 ---
 
 ## Getting Started
