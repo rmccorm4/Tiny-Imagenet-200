@@ -9,19 +9,19 @@ eventually expand to larger and larger subsets, making my way up to all
 ---
 ## Table of Contents
 
-### 1. Getting Started
+### Getting Started
 
-### 2. Setting Up Your Environment
-* Pip
-* Anaconda
+### Setting Up Your Environment
+* [Pip](https://pypi.python.org/pypi/pip)
+* [Anaconda](https://www.continuum.io/anaconda-overview)
 
-### 3. Creating Class Sets
+### Creating Class Sets
 
-### 4. Training Network
+### Training Network
 
-### 5. Evaluating Trained Network
+### Evaluating Trained Network
 
-### 6. Tweakable Parameters
+### Tweakable Parameters
 ---
 
 ## Getting Started
