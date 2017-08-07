@@ -123,6 +123,9 @@ python networks/train_tiny_lenet.py --resize=True --num_classes=10 --wnids='rand
 
 # String: Path to saved model to evaluate accuracy of
 --load
+
+# Boolean: True=Normalize images by dividing each color channel by 255, Default=False
+--normalize
 ```
 
 ## Notes To Self
