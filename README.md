@@ -3,6 +3,25 @@
 For the sake of speed in cloning/pushing/pulling to this repository,
 I've added the Tiny-Imagenet-200 dataset to the gitignore.
 
+---
+## [Table of Contents]
+
+### [1. Getting Started]
+
+### [2. Setting Up Your Environment]
+
+* Pip
+* Anaconda
+
+### [3. Creating Class Sets]
+
+### [4. Training Network]
+
+### [5. Evaluating Trained Network]
+
+### [6. Tweakable Parameters]
+---
+
 ## Getting Started
 
 To use this code you will first need to download the dataset from
@@ -15,7 +34,7 @@ if you have `wget` installed to download it to your current directory:
 wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
 ```
 
-## Setting up your environment
+## Setting Up Your Environment
 
 ### Pip
 Then you will need to install all required libraries by running the command:
@@ -87,7 +106,7 @@ the `--load` optional argument as demonstrated below
 python networks/train_tiny_lenet.py --resize=True --num_classes=10 --wnids='random/0' --load='work/training/tiny_imagenet/sets/random/0/best_weights_val_acc.hdf5'
 ```
 
-### Tweakable Parameters
+## Tweakable Parameters
 
 ```
 # String: Choice of whether to use 'cpu', 'gpu', '2gpu', Default='cpu'
