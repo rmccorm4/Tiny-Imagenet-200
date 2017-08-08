@@ -38,8 +38,8 @@ if __name__ == '__main__':
 				print(network['normalize'])
 				accuracy = train_tiny_imagenet(wnids=set_path, 
 											   resize=network['resize'], 
-											   load=os.path.join(model_path, model)) 
-											   #normalize=network['normalize'])
+											   load=os.path.join(model_path, model),
+											   normalize=network['normalize'])
 				accuracy = '%.2f%%' % float(accuracy)
 
 				if network['resize']:	
