@@ -35,7 +35,7 @@ def load_CIFAR10(ROOT):
   Xte, Yte = load_CIFAR_batch(os.path.join(ROOT, 'test_batch'))
   return Xtr, Ytr, Xte, Yte
 
-def load_tiny_imagenet(path, wnids_path, resize=False, num_classes=200, dtype=np.float32):
+def load_tiny_imagenet(path, wnids_path, resize='False', num_classes=200, dtype=np.float32):
   """
   Load TinyImageNet. Each of TinyImageNet-100-A, TinyImageNet-100-B, and
   TinyImageNet-200 have the same directory structure, so this can be used
@@ -84,7 +84,7 @@ def load_tiny_imagenet(path, wnids_path, resize=False, num_classes=200, dtype=np
       filenames = [x.split('\t')[0] for x in f]
     num_images = len(filenames)
     
-    if resize:
+    if resize.lower() == 'true':
       X_train_block = np.zeros((num_images, 3, 32, 32), dtype=dtype)
     else:
       X_train_block = np.zeros((num_images, 3, 64, 64), dtype=dtype)
@@ -95,13 +95,13 @@ def load_tiny_imagenet(path, wnids_path, resize=False, num_classes=200, dtype=np
       img = imread(img_file)
       #print(img)
       #print(img.shape)
-      if resize:
+      if resize.lower() == 'true':
         img = scipy.misc.imresize(img, (32, 32, 3))
         #print(img)
         #print(img.shape)
       if img.ndim == 2:
         ## grayscale file
-        if resize:
+        if resize.lower() == 'true':
           img.shape = (32, 32, 1)
         else:
           img.shape = (64, 64, 1)
@@ -126,7 +126,7 @@ def load_tiny_imagenet(path, wnids_path, resize=False, num_classes=200, dtype=np
     num_val = len(img_files)
     y_val = np.array([wnid_to_label[wnid] for wnid in val_wnids])
     
-    if resize:
+    if resize.lower() == 'true':
       X_val = np.zeros((num_val, 3, 32, 32), dtype=dtype)
     else:
       X_val = np.zeros((num_val, 3, 64, 64), dtype=dtype)
@@ -136,12 +136,12 @@ def load_tiny_imagenet(path, wnids_path, resize=False, num_classes=200, dtype=np
       img = imread(img_file)
       #print(img)
       #print(img.shape)
-      if resize:
+      if resize.lower() == 'true':
         img = scipy.misc.imresize(img, (32, 32, 3))
         #print(img)
         #print(img.shape)
       if img.ndim == 2:
-        if resize:
+        if resize.lower() == 'true':
           img.shape = (32, 32, 1)
         else:
           img.shape = (64, 64, 1)

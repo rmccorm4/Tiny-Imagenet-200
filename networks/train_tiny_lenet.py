@@ -28,7 +28,7 @@ if not os.path.isdir(train_path):
 # Train network
 def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25, 
 						num_classes=10, lr=0.001, decay=0.00, wnids='', 
-						resize=False, load='', normalize=False):
+						resize='False', load='', normalize='False'):
 	# Load data
 	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize, num_classes, normalize)
 	print(normalize)
@@ -101,6 +101,8 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25,
 				sets_index = wnids_path.find('sets')
 				outpath = os.path.join(train_path, wnids_path[sets_index:])
 				# Naming file by hyperparameters
+				resize = resize.title()
+				normalize = normalize.title()
 				prefix = '%d_%d_%d_%.5f_%.2f_%s_%s_best_%s_' % (batch_size, num_epochs, num_classes, lr, decay, resize, normalize, criteria)
 				model_outfile = os.path.join(outpath, prefix + 'model.hdf5')
 				csv_outfile = os.path.join(outpath, prefix + 'log.csv')
@@ -154,7 +156,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25,
 				
 				return 'New network trained!'
 
-def process_images(wnids_path='', resize=False, num_classes=200, normalize=False):
+def process_images(wnids_path='', resize='False', num_classes=200, normalize='False'):
 	# Path to tiny imagenet dataset
 	if wnids_path == '':
 		wnids_path = input('Enter the relative path to the directory containing the wnids/words files from sets/: ')
@@ -168,7 +170,7 @@ def process_images(wnids_path='', resize=False, num_classes=200, normalize=False
 	x_train = np.einsum('iljk->ijkl', x_train)
 	x_val = np.einsum('iljk->ijkl', x_val)
 
-	if normalize:
+	if normalize.lower() == 'true':
 		x_train /= 255
 		x_val /= 255
 
@@ -190,9 +192,9 @@ if __name__ == '__main__':
 	parser.add_argument('--data_augmentation', type=bool, default=False, help='')
 	parser.add_argument('--criteria', type=str, default='val_acc', help='Criteria to consider when choosing the "best" model. Can also use "val_loss", "train_loss", or "train_acc".')
 	parser.add_argument('--wnids', type=str, default='', help='Relative path to wnids file to train on.')
-	parser.add_argument('--resize', type=bool, default=False, help='False = 64x64 images, True=32x32 images')
+	parser.add_argument('--resize', type=str, default='False', help='False = 64x64 images, True=32x32 images')
 	parser.add_argument('--load', type=str, default='', help='Path to saved model to load and evaluate.')
-	parser.add_argument('--normalize', type=bool, default=False, help='Path to saved model to load and evaluate.')
+	parser.add_argument('--normalize', type=str, default='False', help='Path to saved model to load and evaluate.')
 	
 	args = parser.parse_args()
 	hardware, batch_size, num_epochs, num_classes, lr, decay, data_augmentation, criteria, wnids, resize, load, normalize = args.hardware, args.batch_size, args.num_epochs, args.num_classes, args.learning_rate, args.weight_decay, args.data_augmentation, args.criteria, args.wnids, args.resize, args.load, args.normalize

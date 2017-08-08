@@ -32,17 +32,17 @@ if __name__ == '__main__':
 				params = model.split('_')
 				network = {'batch_size' : params[0], 'num_epochs' : params[1],
 						   'num_classes' : params[2], 'lr' : params[3],
-						   'decay' : params[4], 'resize' : bool(params[5]),
+						   'decay' : params[4], 'resize' : params[5],
 						   'normalize' : params[6]}
 				
 				print(network['normalize'])
 				accuracy = train_tiny_imagenet(wnids=set_path, 
 											   resize=network['resize'], 
-											   load=os.path.join(model_path, model)) 
-											   #normalize=network['normalize'])
+											   load=os.path.join(model_path, model),
+											   normalize=network['normalize'])
 				accuracy = '%.2f%%' % float(accuracy)
 
-				if network['resize']:	
+				if network['resize'].lower() == 'true':	
 					size = '32x32x3'
 				else:
 					size = '64x64x3'
