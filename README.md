@@ -12,8 +12,8 @@ eventually expand to larger and larger subsets, making my way up to all
 ### Getting Started
 
 ### Setting Up Your Environment
-* [Pip](https://pypi.python.org/pypi/pip)
 * [Anaconda](https://www.continuum.io/anaconda-overview)
+* [Pip](https://pypi.python.org/pypi/pip)
 
 ### Creating Class Sets
 
@@ -38,20 +38,23 @@ wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
 
 ## Setting Up Your Environment
 
-### Pip
-Then you will need to install all required libraries by running the command:
-```
-pip install -r requirements.txt
-```
-
 ### Anaconda
+
+Using Anaconda is a GREAT way to keep everything consistent
+regardless of what machine you run your code on.
 
 The following command will create an Anaconda virtual environment with the
 modules listed in requirements.txt installed. This is very useful on clusters
 where you don't necessarily have root priveliges. To be specific, I used
-Anaconda/4.0.0 in these cases.
+Anaconda/4.0.0 in these cases. Locally, any version should be fine.
 ```
 conda create --name py3 python=3.5.2 --file requirements.txt
+```
+
+### Pip
+Then you will need to install all required libraries by running the command:
+```
+pip install -r requirements.txt
 ```
 
 ## Creating class sets
