@@ -93,12 +93,9 @@ def load_tiny_imagenet(path, wnids_path, resize='False', num_classes=200, dtype=
     for j, img_file in enumerate(filenames):
       img_file = os.path.join(path, 'train', wnid, 'images', img_file)
       img = imread(img_file)
-      #print(img)
-      #print(img.shape)
+      
       if resize.lower() == 'true':
         img = scipy.misc.imresize(img, (32, 32, 3))
-        #print(img)
-        #print(img.shape)
       if img.ndim == 2:
         ## grayscale file
         if resize.lower() == 'true':
@@ -134,12 +131,8 @@ def load_tiny_imagenet(path, wnids_path, resize='False', num_classes=200, dtype=
     for i, img_file in enumerate(img_files):
       img_file = os.path.join(path, 'val', 'images', img_file)
       img = imread(img_file)
-      #print(img)
-      #print(img.shape)
       if resize.lower() == 'true':
         img = scipy.misc.imresize(img, (32, 32, 3))
-        #print(img)
-        #print(img.shape)
       if img.ndim == 2:
         if resize.lower() == 'true':
           img.shape = (32, 32, 1)

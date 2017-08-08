@@ -31,9 +31,6 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25,
 						resize='False', load='', normalize='False'):
 	# Load data
 	x_train, y_train, x_val, y_val, wnids_path = process_images(wnids, resize, num_classes, normalize)
-	print(normalize)
-	print(load)
-	print(normalize)
 	
 	# Choose seleted hardware, default to CPU
 	if hardware == 'gpu':
@@ -51,7 +48,7 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25,
 				model = load_model(load)
 				# Run validation set through loaded network
 				score = model.evaluate(x_val, y_val, batch_size=batch_size)
-				print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
+				#print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
 				return str(score[1]*100)
 
 			# Otherwise train new network
@@ -106,8 +103,6 @@ def train_tiny_imagenet(hardware='cpu', batch_size=100, num_epochs=25,
 				prefix = '%d_%d_%d_%.5f_%.2f_%s_%s_best_%s_' % (batch_size, num_epochs, num_classes, lr, decay, resize, normalize, criteria)
 				model_outfile = os.path.join(outpath, prefix + 'model.hdf5')
 				csv_outfile = os.path.join(outpath, prefix + 'log.csv')
-				print(model_outfile)
-				print(csv_outfile)
 				if not os.path.exists(outpath):
 					os.makedirs(outpath)
 
@@ -161,7 +156,6 @@ def process_images(wnids_path='', resize='False', num_classes=200, normalize='Fa
 	if wnids_path == '':
 		wnids_path = input('Enter the relative path to the directory containing the wnids/words files from sets/: ')
 	wnids_path = os.path.join('..', 'sets', wnids_path)
-	print(wnids_path)
 	
 	# Generate data fields - test data has no labels so ignore it
 	classes, x_train, y_train, x_val, y_val = load_tiny_imagenet(os.path.join('tiny-imagenet-200'), wnids_path, num_classes=num_classes, resize=resize)

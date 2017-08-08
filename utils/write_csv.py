@@ -5,8 +5,10 @@ sys.path.insert(0, os.path.join('networks'))
 from train_tiny_lenet import train_tiny_imagenet
 
 if __name__ == '__main__':
-	start = int(input('Enter network number to start at: '))
-	end = int(input('Enter network number to end at: '))
+	#start = int(input('Enter network number to start at: '))
+	#end = int(input('Enter network number to end at: '))
+	start = int(sys.argv[1])
+	end = int(sys.argv[2])
 	
 	# Title Row for Table
 	data = [['SET', 'CLASSES', 'ACCURACY', 'NORMALIZE', 'BATCH_SIZE', 'EPOCHS', '# CLASSES', 'LEARNING RATE', 'WEIGHT DECAY', 'IMAGE SIZE']]
@@ -26,8 +28,6 @@ if __name__ == '__main__':
 
 		for model in models:
 			if 'hdf5' in model:
-				print(model)
-			
 				# Get network information from filename
 				params = model.split('_')
 				network = {'batch_size' : params[0], 'num_epochs' : params[1],
@@ -35,7 +35,6 @@ if __name__ == '__main__':
 						   'decay' : params[4], 'resize' : params[5],
 						   'normalize' : params[6]}
 				
-				print(network['normalize'])
 				accuracy = train_tiny_imagenet(wnids=set_path, 
 											   resize=network['resize'], 
 											   load=os.path.join(model_path, model),
@@ -58,9 +57,13 @@ if __name__ == '__main__':
 				continue
 
 	# Write network info out to CSV file
-	table_name = input('Enter table name to create or append to: ')
-	mode = input("Enter 'w' for new table or 'a' to append to an existing" + \
-				  " table: ")
+	#table_name = input('Enter table name to create or append to: ')
+	#mode = input("Enter 'w' for new table or 'a' to append to an existing" + \
+	#			  " table: ")
+	
+	table_name = sys.argv[3]
+	mode = sys.argv[4]
+	
 	outpath = os.path.join('results', table_name)
 
 	with open(outpath, mode) as csv_file:
