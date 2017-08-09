@@ -1,3 +1,0 @@
-SET,CLASSES,ACCURACY,NORMALIZE,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
-random/0,['gasmask' 'sports car' 'viaduct' 'German shepherd' 'ladybug' 'beach wagon' 'butcher shop' 'bighorn' 'academic gown' 'orangutan'],47.00%,False,100,25,10,0.00100,0.00,32x32x3
-random/0,['gasmask' 'sports car' 'viaduct' 'German shepherd' 'ladybug' 'beach wagon' 'butcher shop' 'bighorn' 'academic gown' 'orangutan'],55.20%,True,100,25,10,0.00100,0.00,32x32x3
