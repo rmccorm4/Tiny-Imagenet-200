@@ -50,8 +50,26 @@ The following command will create an Anaconda virtual environment with the
 modules listed in requirements.txt installed. This is very useful on clusters
 where you don't necessarily have root priveliges. To be specific, I used
 Anaconda/4.0.0 in these cases.
+
 ```
 conda create --name py3 python=3.5.2 --file requirements.txt
+```
+
+NOTE: Apparently if you create a model on one version of Keras, and load that
+model in a different version of Keras, there is a good chance you'll get this
+error:
+
+```
+ValueError: Optimizer weight shape (32,) not compatible with provided weight shape (5, 5, 3, 32)
+```
+
+To remedy this, I saved the conda environment with all of the versions that
+were used to create the first 2000 models seen in utils/2000networks.csv in
+utils/working_conda_env.yml. To recreate the environment with these exact
+library verions, run this command:
+
+```
+conda env create -f utils/working_conda_env.yml
 ```
 
 ## Creating class sets
