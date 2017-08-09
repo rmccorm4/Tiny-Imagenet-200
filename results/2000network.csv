@@ -2499,3 +2499,249 @@ random/1218,['rugby ball' 'chimpanzee' 'moving van' 'cash machine' 'bullfrog' 'c
 random/1218,['rugby ball' 'chimpanzee' 'moving van' 'cash machine' 'bullfrog' 'chest' 'barbershop' 'military uniform' 'black stork' 'punching bag'],57.20%,True,100,25,10,0.00100,0.00,32x32x3
 random/1219,['chest' 'sombrero' 'police van' 'tarantula' 'European fire salamander' 'water tower' 'brain coral' 'bannister' 'abacus' 'wok'],57.20%,False,100,25,10,0.00100,0.00,32x32x3
 random/1219,['chest' 'sombrero' 'police van' 'tarantula' 'European fire salamander' 'water tower' 'brain coral' 'bannister' 'abacus' 'wok'],55.40%,True,100,25,10,0.00100,0.00,32x32x3
+SET,CLASSES,ACCURACY,NORMALIZE,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
+random/1220,['reel' 'brown bear' 'ice lolly' 'refrigerator' 'orange' 'dumbbell' 'lemon' 'steel arch bridge' 'sock' 'pretzel'],48.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1220,['reel' 'brown bear' 'ice lolly' 'refrigerator' 'orange' 'dumbbell' 'lemon' 'steel arch bridge' 'sock' 'pretzel'],53.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1221,['butcher shop' 'poncho' 'walking stick' 'bighorn' 'candle' 'hourglass' 'water tower' 'seashore' 'space heater' 'bullet train'],56.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1221,['butcher shop' 'poncho' 'walking stick' 'bighorn' 'candle' 'hourglass' 'water tower' 'seashore' 'space heater' 'bullet train'],58.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1222,['snail' 'coral reef' 'seashore' 'flagpole' 'comic book' 'spider web' 'wok' 'rocking chair' 'sock' 'lawn mower'],57.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1222,['snail' 'coral reef' 'seashore' 'flagpole' 'comic book' 'spider web' 'wok' 'rocking chair' 'sock' 'lawn mower'],56.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1223,['suspension bridge' 'baboon' 'punching bag' 'butcher shop' 'black stork' 'space heater' 'koala' 'freight car' 'wok' 'miniskirt'],56.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1223,['suspension bridge' 'baboon' 'punching bag' 'butcher shop' 'black stork' 'space heater' 'koala' 'freight car' 'wok' 'miniskirt'],59.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1224,['walking stick' 'computer keyboard' 'poncho' 'guinea pig' 'chain' 'sea cucumber' 'convertible' 'suspension bridge' 'sports car' 'candle'],48.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1224,['walking stick' 'computer keyboard' 'poncho' 'guinea pig' 'chain' 'sea cucumber' 'convertible' 'suspension bridge' 'sports car' 'candle'],49.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1225,['computer keyboard' 'sports car' 'academic gown' 'limousine' 'lifeboat' 'wok' 'orange' 'bullet train' 'bathtub' 'centipede'],57.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1225,['computer keyboard' 'sports car' 'academic gown' 'limousine' 'lifeboat' 'wok' 'orange' 'bullet train' 'bathtub' 'centipede'],60.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1226,['goldfish' 'sombrero' 'bikini' 'spiny lobster' 'boa constrictor' 'pill bottle' 'abacus' 'miniskirt' 'sunglasses' 'lakeside'],50.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1226,['goldfish' 'sombrero' 'bikini' 'spiny lobster' 'boa constrictor' 'pill bottle' 'abacus' 'miniskirt' 'sunglasses' 'lakeside'],52.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1227,['brown bear' 'standard poodle' 'African elephant' 'cougar' 'pill bottle' 'acorn' 'snorkel' 'spiny lobster' 'centipede' 'projectile'],45.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1227,['brown bear' 'standard poodle' 'African elephant' 'cougar' 'pill bottle' 'acorn' 'snorkel' 'spiny lobster' 'centipede' 'projectile'],45.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1228,['tractor' 'barbershop' 'pill bottle' 'drumstick' 'monarch' 'gazelle' 'neck brace' 'American lobster' 'limousine' 'ice lolly'],49.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1228,['tractor' 'barbershop' 'pill bottle' 'drumstick' 'monarch' 'gazelle' 'neck brace' 'American lobster' 'limousine' 'ice lolly'],53.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1229,['lawn mower' 'organ' 'neck brace' 'teddy' 'poncho' 'school bus' 'meat loaf' 'Arabian camel' 'hog' 'dugong'],58.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1229,['lawn mower' 'organ' 'neck brace' 'teddy' 'poncho' 'school bus' 'meat loaf' 'Arabian camel' 'hog' 'dugong'],60.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1230,['turnstile' 'grasshopper' 'ladybug' 'organ' 'space heater' 'thatch' 'albatross' 'baboon' 'lifeboat' 'acorn'],58.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1230,['turnstile' 'grasshopper' 'ladybug' 'organ' 'space heater' 'thatch' 'albatross' 'baboon' 'lifeboat' 'acorn'],56.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1231,['computer keyboard' 'cliff' 'picket fence' 'organ' 'banana' 'barrel' 'apron' 'African elephant' 'mantis' 'freight car'],55.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1231,['computer keyboard' 'cliff' 'picket fence' 'organ' 'banana' 'barrel' 'apron' 'African elephant' 'mantis' 'freight car'],55.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1232,['ice cream' 'pay-phone' 'vestment' 'comic book' 'wooden spoon' 'mashed potato' 'wok' 'swimming trunks' 'cannon' 'lesser panda'],49.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1232,['ice cream' 'pay-phone' 'vestment' 'comic book' 'wooden spoon' 'mashed potato' 'wok' 'swimming trunks' 'cannon' 'lesser panda'],51.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1233,['obelisk' 'gondola' 'barbershop' 'goldfish' 'comic book' 'brain coral' 'torch' 'freight car' 'water jug' 'African elephant'],65.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1233,['obelisk' 'gondola' 'barbershop' 'goldfish' 'comic book' 'brain coral' 'torch' 'freight car' 'water jug' 'African elephant'],65.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1234,['sea cucumber' 'pretzel' 'triumphal arch' 'walking stick' 'swimming trunks' 'lawn mower' 'chain' 'mantis' 'backpack' 'basketball'],50.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1234,['sea cucumber' 'pretzel' 'triumphal arch' 'walking stick' 'swimming trunks' 'lawn mower' 'chain' 'mantis' 'backpack' 'basketball'],50.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1235,['go-kart' 'bell pepper' 'parking meter' 'banana' 'punching bag' 'pomegranate' 'confectionery' 'cliff dwelling' 'ice cream' 'moving van'],54.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1235,['go-kart' 'bell pepper' 'parking meter' 'banana' 'punching bag' 'pomegranate' 'confectionery' 'cliff dwelling' 'ice cream' 'moving van'],61.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1236,['convertible' 'American lobster' 'go-kart' 'obelisk' 'sock' 'brown bear' 'lifeboat' 'seashore' 'chest' 'dining table'],61.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1236,['convertible' 'American lobster' 'go-kart' 'obelisk' 'sock' 'brown bear' 'lifeboat' 'seashore' 'chest' 'dining table'],62.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1237,['pizza' 'African elephant' 'cardigan' 'banana' 'sombrero' 'picket fence' 'bell pepper' 'punching bag' 'space heater' 'water tower'],54.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1237,['pizza' 'African elephant' 'cardigan' 'banana' 'sombrero' 'picket fence' 'bell pepper' 'punching bag' 'space heater' 'water tower'],59.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1238,['slug' 'beaker' 'candle' 'gazelle' 'seashore' 'brain coral' 'poncho' 'sulphur butterfly' 'meat loaf' 'baboon'],63.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1238,['slug' 'beaker' 'candle' 'gazelle' 'seashore' 'brain coral' 'poncho' 'sulphur butterfly' 'meat loaf' 'baboon'],62.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1239,['limousine' 'pay-phone' 'gasmask' 'police van' 'king penguin' 'water tower' 'Egyptian cat' 'beacon' 'binoculars' 'seashore'],48.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1239,['limousine' 'pay-phone' 'gasmask' 'police van' 'king penguin' 'water tower' 'Egyptian cat' 'beacon' 'binoculars' 'seashore'],53.80%,True,100,25,10,0.00100,0.00,32x32x3
+SET,CLASSES,ACCURACY,NORMALIZE,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
+random/1240,['gazelle' 'bannister' 'steel arch bridge' 'trolleybus' 'albatross' 'pop bottle' 'vestment' 'poncho' 'pole' 'barrel'],47.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1240,['gazelle' 'bannister' 'steel arch bridge' 'trolleybus' 'albatross' 'pop bottle' 'vestment' 'poncho' 'pole' 'barrel'],52.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1241,['fur coat' 'cauliflower' 'jellyfish' 'bee' 'go-kart' 'standard poodle' 'bison' 'academic gown' 'beaker' 'syringe'],54.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1241,['fur coat' 'cauliflower' 'jellyfish' 'bee' 'go-kart' 'standard poodle' 'bison' 'academic gown' 'beaker' 'syringe'],55.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1242,['African elephant' 'sandal' 'volleyball' 'flagpole' 'dining table' 'desk' 'gondola' 'cockroach' 'organ' 'dugong'],59.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1242,['African elephant' 'sandal' 'volleyball' 'flagpole' 'dining table' 'desk' 'gondola' 'cockroach' 'organ' 'dugong'],57.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1243,['German shepherd' 'baboon' 'abacus' 'torch' 'barrel' 'alp' 'bighorn' 'syringe' 'spiny lobster' 'chimpanzee'],45.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1243,['German shepherd' 'baboon' 'abacus' 'torch' 'barrel' 'alp' 'bighorn' 'syringe' 'spiny lobster' 'chimpanzee'],50.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1244,['fountain' 'flagpole' 'tabby' 'Egyptian cat' 'European fire salamander' 'cockroach' 'cardigan' 'cash machine' 'chimpanzee' 'lifeboat'],49.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1244,['fountain' 'flagpole' 'tabby' 'Egyptian cat' 'European fire salamander' 'cockroach' 'cardigan' 'cash machine' 'chimpanzee' 'lifeboat'],57.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1245,['hog' 'turnstile' 'altar' 'computer keyboard' 'teapot' 'sombrero' 'iPod' 'volleyball' 'grasshopper' 'mushroom'],51.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1245,['hog' 'turnstile' 'altar' 'computer keyboard' 'teapot' 'sombrero' 'iPod' 'volleyball' 'grasshopper' 'mushroom'],55.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1246,['goldfish' 'acorn' 'tabby' 'bucket' 'volleyball' 'guinea pig' 'cougar' 'lifeboat' 'dragonfly' 'iPod'],50.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1246,['goldfish' 'acorn' 'tabby' 'bucket' 'volleyball' 'guinea pig' 'cougar' 'lifeboat' 'dragonfly' 'iPod'],51.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1247,['miniskirt' 'altar' 'freight car' 'Labrador retriever' 'bathtub' 'space heater' 'dugong' 'dragonfly' 'pay-phone' 'binoculars'],55.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1247,['miniskirt' 'altar' 'freight car' 'Labrador retriever' 'bathtub' 'space heater' 'dugong' 'dragonfly' 'pay-phone' 'binoculars'],59.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1248,['beach wagon' 'goldfish' 'gasmask' 'mantis' 'binoculars' 'stopwatch' 'orange' 'Egyptian cat' 'candle' 'kimono'],53.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1248,['beach wagon' 'goldfish' 'gasmask' 'mantis' 'binoculars' 'stopwatch' 'orange' 'Egyptian cat' 'candle' 'kimono'],53.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1249,['centipede' 'viaduct' 'go-kart' 'drumstick' 'maypole' 'Chihuahua' 'birdhouse' 'magnetic compass' 'chain' 'lampshade'],45.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1249,['centipede' 'viaduct' 'go-kart' 'drumstick' 'maypole' 'Chihuahua' 'birdhouse' 'magnetic compass' 'chain' 'lampshade'],50.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1250,['chain' 'dugong' 'bison' 'obelisk' 'water jug' 'golden retriever' 'CD player' 'parking meter' 'stopwatch' 'flagpole'],56.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1250,['chain' 'dugong' 'bison' 'obelisk' 'water jug' 'golden retriever' 'CD player' 'parking meter' 'stopwatch' 'flagpole'],57.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1251,"['reel' 'turnstile' 'dumbbell' 'Christmas stocking' 'suspension bridge' 'jellyfish' 'crane' 'vestment' ""potter's wheel"" 'ladybug']",53.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1251,"['reel' 'turnstile' 'dumbbell' 'Christmas stocking' 'suspension bridge' 'jellyfish' 'crane' 'vestment' ""potter's wheel"" 'ladybug']",53.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1252,['swimming trunks' 'fly' 'barbershop' 'tailed frog' 'basketball' 'trilobite' 'gasmask' 'mantis' 'oboe' 'sewing machine'],44.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1252,['swimming trunks' 'fly' 'barbershop' 'tailed frog' 'basketball' 'trilobite' 'gasmask' 'mantis' 'oboe' 'sewing machine'],46.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1253,['oboe' 'sock' 'swimming trunks' 'organ' 'sewing machine' 'grasshopper' 'volleyball' 'binoculars' 'chain' 'bathtub'],44.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1253,['oboe' 'sock' 'swimming trunks' 'organ' 'sewing machine' 'grasshopper' 'volleyball' 'binoculars' 'chain' 'bathtub'],44.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1254,['black widow' 'magnetic compass' 'iPod' 'neck brace' 'pomegranate' 'Yorkshire terrier' 'desk' 'beacon' 'swimming trunks' 'punching bag'],56.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1254,['black widow' 'magnetic compass' 'iPod' 'neck brace' 'pomegranate' 'Yorkshire terrier' 'desk' 'beacon' 'swimming trunks' 'punching bag'],53.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1255,['crane' 'American alligator' 'CD player' 'chain' 'gazelle' 'barrel' 'Labrador retriever' 'bison' 'viaduct' 'spider web'],49.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1255,['crane' 'American alligator' 'CD player' 'chain' 'gazelle' 'barrel' 'Labrador retriever' 'bison' 'viaduct' 'spider web'],51.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1256,['sea slug' 'gasmask' 'gazelle' 'dam' 'grasshopper' 'cliff dwelling' 'teapot' 'refrigerator' 'fly' 'Yorkshire terrier'],49.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1256,['sea slug' 'gasmask' 'gazelle' 'dam' 'grasshopper' 'cliff dwelling' 'teapot' 'refrigerator' 'fly' 'Yorkshire terrier'],53.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1257,['fur coat' 'mushroom' 'scorpion' 'pay-phone' 'spider web' 'candle' 'swimming trunks' 'lesser panda' 'dining table' 'sea cucumber'],51.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1257,['fur coat' 'mushroom' 'scorpion' 'pay-phone' 'spider web' 'candle' 'swimming trunks' 'lesser panda' 'dining table' 'sea cucumber'],56.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1258,['punching bag' 'potpie' 'dumbbell' 'chest' 'plate' 'sea slug' 'sea cucumber' 'bell pepper' 'altar' 'cash machine'],59.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1258,['punching bag' 'potpie' 'dumbbell' 'chest' 'plate' 'sea slug' 'sea cucumber' 'bell pepper' 'altar' 'cash machine'],60.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1259,['sandal' 'meat loaf' 'African elephant' 'mantis' 'steel arch bridge' 'military uniform' 'sports car' 'iPod' 'lawn mower' 'rugby ball'],59.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1259,['sandal' 'meat loaf' 'African elephant' 'mantis' 'steel arch bridge' 'military uniform' 'sports car' 'iPod' 'lawn mower' 'rugby ball'],58.80%,True,100,25,10,0.00100,0.00,32x32x3
+SET,CLASSES,ACCURACY,NORMALIZE,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
+random/1260,['dumbbell' 'rocking chair' 'Christmas stocking' 'plate' 'brown bear' 'pizza' 'confectionery' 'academic gown' 'beer bottle' 'tractor'],55.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1260,['dumbbell' 'rocking chair' 'Christmas stocking' 'plate' 'brown bear' 'pizza' 'confectionery' 'academic gown' 'beer bottle' 'tractor'],54.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1261,['espresso' 'dugong' 'rugby ball' 'barbershop' 'guinea pig' 'bee' 'sock' 'monarch' 'bighorn' 'pole'],58.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1261,['espresso' 'dugong' 'rugby ball' 'barbershop' 'guinea pig' 'bee' 'sock' 'monarch' 'bighorn' 'pole'],56.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1262,['backpack' 'snail' 'gondola' 'parking meter' 'baboon' 'wooden spoon' 'spiny lobster' 'goldfish' 'confectionery' 'African elephant'],53.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1262,['backpack' 'snail' 'gondola' 'parking meter' 'baboon' 'wooden spoon' 'spiny lobster' 'goldfish' 'confectionery' 'African elephant'],51.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1263,['goose' 'trilobite' 'nail' 'cliff' 'beacon' 'punching bag' 'broom' 'sock' 'pretzel' 'Labrador retriever'],47.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1263,['goose' 'trilobite' 'nail' 'cliff' 'beacon' 'punching bag' 'broom' 'sock' 'pretzel' 'Labrador retriever'],48.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1264,['abacus' 'cash machine' 'picket fence' 'beach wagon' 'reel' 'punching bag' 'space heater' 'standard poodle' 'espresso' 'acorn'],46.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1264,['abacus' 'cash machine' 'picket fence' 'beach wagon' 'reel' 'punching bag' 'space heater' 'standard poodle' 'espresso' 'acorn'],48.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1265,['water jug' 'suspension bridge' 'birdhouse' 'binoculars' 'sunglasses' 'snail' 'pomegranate' 'academic gown' 'orangutan' 'sulphur butterfly'],53.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1265,['water jug' 'suspension bridge' 'birdhouse' 'binoculars' 'sunglasses' 'snail' 'pomegranate' 'academic gown' 'orangutan' 'sulphur butterfly'],51.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1266,['chest' 'spider web' 'suspension bridge' 'mashed potato' 'desk' 'miniskirt' 'backpack' 'rugby ball' 'iPod' 'wok'],53.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1266,['chest' 'spider web' 'suspension bridge' 'mashed potato' 'desk' 'miniskirt' 'backpack' 'rugby ball' 'iPod' 'wok'],55.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1267,['ice cream' 'hog' 'beacon' 'confectionery' 'Chihuahua' 'bullfrog' 'bighorn' 'pizza' 'European fire salamander' 'magnetic compass'],50.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1267,['ice cream' 'hog' 'beacon' 'confectionery' 'Chihuahua' 'bullfrog' 'bighorn' 'pizza' 'European fire salamander' 'magnetic compass'],51.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1268,['punching bag' 'trilobite' 'sombrero' 'maypole' 'swimming trunks' 'African elephant' 'desk' 'bighorn' 'computer keyboard' 'mashed potato'],47.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1268,['punching bag' 'trilobite' 'sombrero' 'maypole' 'swimming trunks' 'African elephant' 'desk' 'bighorn' 'computer keyboard' 'mashed potato'],52.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1269,['military uniform' 'punching bag' 'pizza' 'alp' 'spiny lobster' 'crane' 'oboe' 'European fire salamander' 'reel' 'Christmas stocking'],53.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1269,['military uniform' 'punching bag' 'pizza' 'alp' 'spiny lobster' 'crane' 'oboe' 'European fire salamander' 'reel' 'Christmas stocking'],50.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1270,['umbrella' 'hog' 'pay-phone' 'pizza' 'sewing machine' 'punching bag' 'sports car' 'volleyball' 'lawn mower' 'rocking chair'],51.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1270,['umbrella' 'hog' 'pay-phone' 'pizza' 'sewing machine' 'punching bag' 'sports car' 'volleyball' 'lawn mower' 'rocking chair'],53.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1271,['cougar' 'albatross' 'spiny lobster' 'black stork' 'binoculars' 'cardigan' 'thatch' 'cauliflower' 'pretzel' 'tailed frog'],52.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1271,['cougar' 'albatross' 'spiny lobster' 'black stork' 'binoculars' 'cardigan' 'thatch' 'cauliflower' 'pretzel' 'tailed frog'],53.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1272,['miniskirt' 'suspension bridge' 'steel arch bridge' 'gondola' 'Yorkshire terrier' 'grasshopper' 'centipede' 'baboon' 'chain' 'broom'],45.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1272,['miniskirt' 'suspension bridge' 'steel arch bridge' 'gondola' 'Yorkshire terrier' 'grasshopper' 'centipede' 'baboon' 'chain' 'broom'],49.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1273,['seashore' 'thatch' 'lesser panda' 'barbershop' 'gondola' 'hourglass' 'cardigan' 'altar' 'wok' 'jinrikisha'],59.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1273,['seashore' 'thatch' 'lesser panda' 'barbershop' 'gondola' 'hourglass' 'cardigan' 'altar' 'wok' 'jinrikisha'],57.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1274,['iPod' 'maypole' 'remote control' 'Arabian camel' 'cardigan' 'espresso' 'snail' 'miniskirt' 'butcher shop' 'tabby'],51.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1274,['iPod' 'maypole' 'remote control' 'Arabian camel' 'cardigan' 'espresso' 'snail' 'miniskirt' 'butcher shop' 'tabby'],53.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1275,['slug' 'pizza' 'German shepherd' 'binoculars' 'space heater' 'sulphur butterfly' 'swimming trunks' 'guacamole' 'kimono' 'mushroom'],57.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1275,['slug' 'pizza' 'German shepherd' 'binoculars' 'space heater' 'sulphur butterfly' 'swimming trunks' 'guacamole' 'kimono' 'mushroom'],58.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1276,['seashore' 'barbershop' 'sports car' 'dumbbell' 'Yorkshire terrier' 'scoreboard' 'sewing machine' 'neck brace' 'umbrella' 'tarantula'],43.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1276,['seashore' 'barbershop' 'sports car' 'dumbbell' 'Yorkshire terrier' 'scoreboard' 'sewing machine' 'neck brace' 'umbrella' 'tarantula'],50.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1277,['cliff' 'lifeboat' 'bucket' 'albatross' 'butcher shop' 'dragonfly' 'altar' 'espresso' 'boa constrictor' 'brown bear'],58.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1277,['cliff' 'lifeboat' 'bucket' 'albatross' 'butcher shop' 'dragonfly' 'altar' 'espresso' 'boa constrictor' 'brown bear'],61.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1278,['pole' 'rugby ball' 'bee' 'grasshopper' 'academic gown' 'torch' 'pill bottle' 'suspension bridge' 'albatross' 'cliff dwelling'],57.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1278,['pole' 'rugby ball' 'bee' 'grasshopper' 'academic gown' 'torch' 'pill bottle' 'suspension bridge' 'albatross' 'cliff dwelling'],61.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1279,['vestment' 'scorpion' 'rugby ball' 'potpie' 'plate' 'bow tie' 'drumstick' 'walking stick' 'albatross' 'plunger'],51.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1279,['vestment' 'scorpion' 'rugby ball' 'potpie' 'plate' 'bow tie' 'drumstick' 'walking stick' 'albatross' 'plunger'],52.20%,True,100,25,10,0.00100,0.00,32x32x3
+SET,CLASSES,ACCURACY,NORMALIZE,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
+random/1280,['punching bag' 'American lobster' 'sombrero' 'freight car' 'turnstile' 'jinrikisha' 'academic gown' 'binoculars' 'beer bottle' 'suspension bridge'],53.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1280,['punching bag' 'American lobster' 'sombrero' 'freight car' 'turnstile' 'jinrikisha' 'academic gown' 'binoculars' 'beer bottle' 'suspension bridge'],54.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1281,"['bannister' 'school bus' ""potter's wheel"" 'dumbbell' 'guinea pig' 'CD player' 'pill bottle' 'rugby ball' 'walking stick' 'tabby']",44.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1281,"['bannister' 'school bus' ""potter's wheel"" 'dumbbell' 'guinea pig' 'CD player' 'pill bottle' 'rugby ball' 'walking stick' 'tabby']",51.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1282,['picket fence' 'American alligator' 'barn' 'flagpole' 'lampshade' 'lemon' 'thatch' 'rocking chair' 'barbershop' 'grasshopper'],51.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1282,['picket fence' 'American alligator' 'barn' 'flagpole' 'lampshade' 'lemon' 'thatch' 'rocking chair' 'barbershop' 'grasshopper'],54.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1283,['sunglasses' 'teddy' 'vestment' 'kimono' 'gazelle' 'slug' 'volleyball' 'plunger' 'coral reef' 'sea cucumber'],45.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1283,['sunglasses' 'teddy' 'vestment' 'kimono' 'gazelle' 'slug' 'volleyball' 'plunger' 'coral reef' 'sea cucumber'],48.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1284,['umbrella' 'monarch' 'bee' 'chimpanzee' 'teddy' 'sports car' 'flagpole' 'cannon' 'slug' 'bell pepper'],54.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1284,['umbrella' 'monarch' 'bee' 'chimpanzee' 'teddy' 'sports car' 'flagpole' 'cannon' 'slug' 'bell pepper'],60.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1285,['wok' 'sewing machine' 'standard poodle' 'Labrador retriever' 'wooden spoon' 'bannister' 'espresso' 'bow tie' 'sunglasses' 'Egyptian cat'],35.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1285,['wok' 'sewing machine' 'standard poodle' 'Labrador retriever' 'wooden spoon' 'bannister' 'espresso' 'bow tie' 'sunglasses' 'Egyptian cat'],33.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1286,['altar' 'dining table' 'albatross' 'teddy' 'lifeboat' 'water tower' 'neck brace' 'pop bottle' 'CD player' 'cliff'],54.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1286,['altar' 'dining table' 'albatross' 'teddy' 'lifeboat' 'water tower' 'neck brace' 'pop bottle' 'CD player' 'cliff'],55.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1287,['steel arch bridge' 'baboon' 'centipede' 'cannon' 'standard poodle' 'oboe' 'apron' 'school bus' 'spiny lobster' 'candle'],51.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1287,['steel arch bridge' 'baboon' 'centipede' 'cannon' 'standard poodle' 'oboe' 'apron' 'school bus' 'spiny lobster' 'candle'],57.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1288,['king penguin' 'stopwatch' 'turnstile' 'snail' 'sewing machine' 'flagpole' 'mantis' 'picket fence' 'sombrero' 'guacamole'],51.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1288,['king penguin' 'stopwatch' 'turnstile' 'snail' 'sewing machine' 'flagpole' 'mantis' 'picket fence' 'sombrero' 'guacamole'],58.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1289,['spider web' 'black widow' 'computer keyboard' 'sulphur butterfly' 'vestment' 'lifeboat' 'pomegranate' 'bee' 'neck brace' 'projectile'],62.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1289,['spider web' 'black widow' 'computer keyboard' 'sulphur butterfly' 'vestment' 'lifeboat' 'pomegranate' 'bee' 'neck brace' 'projectile'],66.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1290,['bannister' 'bell pepper' 'bullfrog' 'police van' 'acorn' 'gasmask' 'guacamole' 'sock' 'picket fence' 'apron'],52.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1290,['bannister' 'bell pepper' 'bullfrog' 'police van' 'acorn' 'gasmask' 'guacamole' 'sock' 'picket fence' 'apron'],58.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1291,['beach wagon' 'ice lolly' 'refrigerator' 'police van' 'parking meter' 'frying pan' 'barbershop' 'German shepherd' 'tarantula' 'drumstick'],46.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1291,['beach wagon' 'ice lolly' 'refrigerator' 'police van' 'parking meter' 'frying pan' 'barbershop' 'German shepherd' 'tarantula' 'drumstick'],51.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1292,['gazelle' 'plunger' 'tarantula' 'pill bottle' 'pay-phone' 'bighorn' 'frying pan' 'steel arch bridge' 'beer bottle' 'refrigerator'],47.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1292,['gazelle' 'plunger' 'tarantula' 'pill bottle' 'pay-phone' 'bighorn' 'frying pan' 'steel arch bridge' 'beer bottle' 'refrigerator'],49.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1293,['cockroach' 'alp' 'seashore' 'cardigan' 'scoreboard' 'pop bottle' 'snorkel' 'stopwatch' 'miniskirt' 'bighorn'],56.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1293,['cockroach' 'alp' 'seashore' 'cardigan' 'scoreboard' 'pop bottle' 'snorkel' 'stopwatch' 'miniskirt' 'bighorn'],56.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1294,['American alligator' 'orangutan' 'confectionery' 'cauliflower' 'beacon' 'Yorkshire terrier' 'cliff' 'bee' 'bikini' 'barn'],57.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1294,['American alligator' 'orangutan' 'confectionery' 'cauliflower' 'beacon' 'Yorkshire terrier' 'cliff' 'bee' 'bikini' 'barn'],58.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1295,"['cliff dwelling' 'go-kart' 'pole' 'sulphur butterfly' 'bell pepper' 'Chihuahua' 'goose' 'obelisk' ""potter's wheel"" 'American alligator']",53.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1295,"['cliff dwelling' 'go-kart' 'pole' 'sulphur butterfly' 'bell pepper' 'Chihuahua' 'goose' 'obelisk' ""potter's wheel"" 'American alligator']",54.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1296,['espresso' 'spiny lobster' 'Yorkshire terrier' 'iPod' 'golden retriever' 'poncho' 'American alligator' 'fly' 'acorn' 'beacon'],56.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1296,['espresso' 'spiny lobster' 'Yorkshire terrier' 'iPod' 'golden retriever' 'poncho' 'American alligator' 'fly' 'acorn' 'beacon'],59.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1297,['fly' 'tractor' 'American lobster' 'organ' 'lakeside' 'sandal' 'go-kart' 'cougar' 'drumstick' 'mushroom'],52.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1297,['fly' 'tractor' 'American lobster' 'organ' 'lakeside' 'sandal' 'go-kart' 'cougar' 'drumstick' 'mushroom'],54.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1298,['Chihuahua' 'turnstile' 'European fire salamander' 'refrigerator' 'lawn mower' 'syringe' 'dining table' 'desk' 'brass' 'school bus'],52.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1298,['Chihuahua' 'turnstile' 'European fire salamander' 'refrigerator' 'lawn mower' 'syringe' 'dining table' 'desk' 'brass' 'school bus'],54.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1299,['cougar' 'gondola' 'parking meter' 'beacon' 'brown bear' 'bullfrog' 'bighorn' 'basketball' 'koala' 'abacus'],48.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1299,['cougar' 'gondola' 'parking meter' 'beacon' 'brown bear' 'bullfrog' 'bighorn' 'basketball' 'koala' 'abacus'],48.00%,True,100,25,10,0.00100,0.00,32x32x3
+SET,CLASSES,ACCURACY,NORMALIZE,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
+random/1300,['barn' 'cockroach' 'acorn' 'trolleybus' 'lawn mower' 'scoreboard' 'sewing machine' 'potpie' 'lion' 'bucket'],53.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1300,['barn' 'cockroach' 'acorn' 'trolleybus' 'lawn mower' 'scoreboard' 'sewing machine' 'potpie' 'lion' 'bucket'],51.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1301,['Egyptian cat' 'kimono' 'limousine' 'triumphal arch' 'espresso' 'rugby ball' 'slug' 'African elephant' 'dragonfly' 'bell pepper'],59.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1301,['Egyptian cat' 'kimono' 'limousine' 'triumphal arch' 'espresso' 'rugby ball' 'slug' 'African elephant' 'dragonfly' 'bell pepper'],58.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1302,['seashore' 'bow tie' 'tractor' 'lemon' 'reel' 'convertible' 'snail' 'pay-phone' 'volleyball' 'confectionery'],55.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1302,['seashore' 'bow tie' 'tractor' 'lemon' 'reel' 'convertible' 'snail' 'pay-phone' 'volleyball' 'confectionery'],55.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1303,['sewing machine' 'umbrella' 'butcher shop' 'refrigerator' 'go-kart' 'teddy' 'trilobite' 'abacus' 'gasmask' 'brown bear'],47.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1303,['sewing machine' 'umbrella' 'butcher shop' 'refrigerator' 'go-kart' 'teddy' 'trilobite' 'abacus' 'gasmask' 'brown bear'],45.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1304,['computer keyboard' 'Yorkshire terrier' 'beach wagon' 'triumphal arch' 'iPod' 'projectile' 'plunger' 'freight car' 'European fire salamander' 'American alligator'],52.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1304,['computer keyboard' 'Yorkshire terrier' 'beach wagon' 'triumphal arch' 'iPod' 'projectile' 'plunger' 'freight car' 'European fire salamander' 'American alligator'],53.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1305,['centipede' 'monarch' 'meat loaf' 'mashed potato' 'cash machine' 'beach wagon' 'ice cream' 'mushroom' 'projectile' 'vestment'],52.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1305,['centipede' 'monarch' 'meat loaf' 'mashed potato' 'cash machine' 'beach wagon' 'ice cream' 'mushroom' 'projectile' 'vestment'],56.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1306,['apron' 'confectionery' 'acorn' 'binoculars' 'European fire salamander' 'orangutan' 'altar' 'tailed frog' 'pizza' 'goose'],52.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1306,['apron' 'confectionery' 'acorn' 'binoculars' 'European fire salamander' 'orangutan' 'altar' 'tailed frog' 'pizza' 'goose'],50.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1307,['acorn' 'Persian cat' 'lampshade' 'butcher shop' 'umbrella' 'jellyfish' 'convertible' 'plate' 'binoculars' 'mushroom'],56.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1307,['acorn' 'Persian cat' 'lampshade' 'butcher shop' 'umbrella' 'jellyfish' 'convertible' 'plate' 'binoculars' 'mushroom'],58.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1308,['dugong' 'ice cream' 'tailed frog' 'sulphur butterfly' 'Egyptian cat' 'cliff dwelling' 'seashore' 'fur coat' 'binoculars' 'water tower'],60.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1308,['dugong' 'ice cream' 'tailed frog' 'sulphur butterfly' 'Egyptian cat' 'cliff dwelling' 'seashore' 'fur coat' 'binoculars' 'water tower'],59.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1309,['volleyball' 'poncho' 'walking stick' 'butcher shop' 'lesser panda' 'pay-phone' 'tractor' 'thatch' 'mantis' 'mushroom'],53.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1309,['volleyball' 'poncho' 'walking stick' 'butcher shop' 'lesser panda' 'pay-phone' 'tractor' 'thatch' 'mantis' 'mushroom'],55.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1310,['chain' 'sandal' 'broom' 'beaker' 'magnetic compass' 'water jug' 'brain coral' 'gasmask' 'bell pepper' 'computer keyboard'],40.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1310,['chain' 'sandal' 'broom' 'beaker' 'magnetic compass' 'water jug' 'brain coral' 'gasmask' 'bell pepper' 'computer keyboard'],47.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1311,['seashore' 'barn' 'sewing machine' 'standard poodle' 'coral reef' 'ladybug' 'hourglass' 'convertible' 'cliff' 'refrigerator'],58.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1311,['seashore' 'barn' 'sewing machine' 'standard poodle' 'coral reef' 'ladybug' 'hourglass' 'convertible' 'cliff' 'refrigerator'],61.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1312,['bell pepper' 'barrel' 'orangutan' 'slug' 'bee' 'American lobster' 'brain coral' 'go-kart' 'desk' 'Egyptian cat'],51.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1312,['bell pepper' 'barrel' 'orangutan' 'slug' 'bee' 'American lobster' 'brain coral' 'go-kart' 'desk' 'Egyptian cat'],57.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1313,['abacus' 'lawn mower' 'confectionery' 'wok' 'CD player' 'alp' 'African elephant' 'gondola' 'dragonfly' 'computer keyboard'],51.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1313,['abacus' 'lawn mower' 'confectionery' 'wok' 'CD player' 'alp' 'African elephant' 'gondola' 'dragonfly' 'computer keyboard'],55.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1314,['European fire salamander' 'dining table' 'acorn' 'fur coat' 'punching bag' 'remote control' 'bullfrog' 'sea cucumber' 'stopwatch' 'Persian cat'],47.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1314,['European fire salamander' 'dining table' 'acorn' 'fur coat' 'punching bag' 'remote control' 'bullfrog' 'sea cucumber' 'stopwatch' 'Persian cat'],49.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1315,['dumbbell' 'seashore' 'candle' 'orangutan' 'ice cream' 'brass' 'walking stick' 'broom' 'bee' 'cliff dwelling'],52.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1315,['dumbbell' 'seashore' 'candle' 'orangutan' 'ice cream' 'brass' 'walking stick' 'broom' 'bee' 'cliff dwelling'],54.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1316,['scoreboard' 'flagpole' 'teapot' 'frying pan' 'tractor' 'plate' 'dining table' 'bell pepper' 'cannon' 'bow tie'],54.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1316,['scoreboard' 'flagpole' 'teapot' 'frying pan' 'tractor' 'plate' 'dining table' 'bell pepper' 'cannon' 'bow tie'],58.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1317,['flagpole' 'gondola' 'abacus' 'dining table' 'swimming trunks' 'drumstick' 'pay-phone' 'fur coat' 'suspension bridge' 'dam'],44.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1317,['flagpole' 'gondola' 'abacus' 'dining table' 'swimming trunks' 'drumstick' 'pay-phone' 'fur coat' 'suspension bridge' 'dam'],52.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1318,['space heater' 'mashed potato' 'rocking chair' 'dugong' 'sea cucumber' 'neck brace' 'miniskirt' 'orangutan' 'remote control' 'school bus'],58.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1318,['space heater' 'mashed potato' 'rocking chair' 'dugong' 'sea cucumber' 'neck brace' 'miniskirt' 'orangutan' 'remote control' 'school bus'],59.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1319,['barn' 'scorpion' 'German shepherd' 'binoculars' 'koala' 'bannister' 'bison' 'cardigan' 'backpack' 'Egyptian cat'],49.20%,False,100,25,10,0.00100,0.00,32x32x3
+random/1319,['barn' 'scorpion' 'German shepherd' 'binoculars' 'koala' 'bannister' 'bison' 'cardigan' 'backpack' 'Egyptian cat'],50.60%,True,100,25,10,0.00100,0.00,32x32x3
+SET,CLASSES,ACCURACY,NORMALIZE,BATCH_SIZE,EPOCHS,# CLASSES,LEARNING RATE,WEIGHT DECAY,IMAGE SIZE
+random/1320,['boa constrictor' 'birdhouse' 'bison' 'barrel' 'sombrero' 'pop bottle' 'kimono' 'bathtub' 'confectionery' 'plunger'],37.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1320,['boa constrictor' 'birdhouse' 'bison' 'barrel' 'sombrero' 'pop bottle' 'kimono' 'bathtub' 'confectionery' 'plunger'],42.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1321,['turnstile' 'volleyball' 'Egyptian cat' 'Chihuahua' 'beacon' 'dugong' 'dragonfly' 'bighorn' 'pizza' 'alp'],56.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1321,['turnstile' 'volleyball' 'Egyptian cat' 'Chihuahua' 'beacon' 'dugong' 'dragonfly' 'bighorn' 'pizza' 'alp'],56.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1322,['chimpanzee' 'convertible' 'lawn mower' 'frying pan' 'drumstick' 'German shepherd' 'academic gown' 'pill bottle' 'goose' 'rocking chair'],55.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1322,['chimpanzee' 'convertible' 'lawn mower' 'frying pan' 'drumstick' 'German shepherd' 'academic gown' 'pill bottle' 'goose' 'rocking chair'],57.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1323,['standard poodle' 'convertible' 'sewing machine' 'Egyptian cat' 'turnstile' 'sea slug' 'gasmask' 'fly' 'coral reef' 'pill bottle'],52.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1323,['standard poodle' 'convertible' 'sewing machine' 'Egyptian cat' 'turnstile' 'sea slug' 'gasmask' 'fly' 'coral reef' 'pill bottle'],53.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1324,['seashore' 'torch' 'tarantula' 'umbrella' 'bullfrog' 'brown bear' 'mushroom' 'cougar' 'miniskirt' 'German shepherd'],51.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1324,['seashore' 'torch' 'tarantula' 'umbrella' 'bullfrog' 'brown bear' 'mushroom' 'cougar' 'miniskirt' 'German shepherd'],54.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1325,['plunger' 'suspension bridge' 'nail' 'dugong' 'beacon' 'golden retriever' 'lifeboat' 'Labrador retriever' 'go-kart' 'wooden spoon'],53.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1325,['plunger' 'suspension bridge' 'nail' 'dugong' 'beacon' 'golden retriever' 'lifeboat' 'Labrador retriever' 'go-kart' 'wooden spoon'],51.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1326,['volleyball' 'steel arch bridge' 'chest' 'cauliflower' 'Arabian camel' 'ice cream' 'spiny lobster' 'parking meter' 'organ' 'bee'],51.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1326,['volleyball' 'steel arch bridge' 'chest' 'cauliflower' 'Arabian camel' 'ice cream' 'spiny lobster' 'parking meter' 'organ' 'bee'],56.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1327,['pop bottle' 'lawn mower' 'sombrero' 'suspension bridge' 'crane' 'neck brace' 'mushroom' 'convertible' 'frying pan' 'sock'],48.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1327,['pop bottle' 'lawn mower' 'sombrero' 'suspension bridge' 'crane' 'neck brace' 'mushroom' 'convertible' 'frying pan' 'sock'],53.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1328,"['umbrella' 'sandal' 'wooden spoon' 'lion' 'picket fence' 'barrel' 'snorkel' 'go-kart' ""potter's wheel"" 'backpack']",48.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1328,"['umbrella' 'sandal' 'wooden spoon' 'lion' 'picket fence' 'barrel' 'snorkel' 'go-kart' ""potter's wheel"" 'backpack']",42.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1329,['spider web' 'lakeside' 'tabby' 'military uniform' 'fountain' 'gasmask' 'confectionery' 'stopwatch' 'altar' 'sunglasses'],47.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1329,['spider web' 'lakeside' 'tabby' 'military uniform' 'fountain' 'gasmask' 'confectionery' 'stopwatch' 'altar' 'sunglasses'],49.40%,True,100,25,10,0.00100,0.00,32x32x3
+random/1330,['lakeside' 'monarch' 'trilobite' 'convertible' 'chain' 'cliff dwelling' 'Chihuahua' 'centipede' 'American lobster' 'bullfrog'],56.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1330,['lakeside' 'monarch' 'trilobite' 'convertible' 'chain' 'cliff dwelling' 'Chihuahua' 'centipede' 'American lobster' 'bullfrog'],54.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1331,['kimono' 'bathtub' 'bighorn' 'ice cream' 'pizza' 'pill bottle' 'freight car' 'umbrella' 'ice lolly' 'school bus'],54.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1331,['kimono' 'bathtub' 'bighorn' 'ice cream' 'pizza' 'pill bottle' 'freight car' 'umbrella' 'ice lolly' 'school bus'],56.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1332,['neck brace' 'rugby ball' 'cliff dwelling' 'trolleybus' 'sandal' 'mushroom' 'albatross' 'torch' 'king penguin' 'gazelle'],59.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1332,['neck brace' 'rugby ball' 'cliff dwelling' 'trolleybus' 'sandal' 'mushroom' 'albatross' 'torch' 'king penguin' 'gazelle'],61.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1333,['cardigan' 'European fire salamander' 'sea cucumber' 'American lobster' 'snorkel' 'desk' 'frying pan' 'altar' 'viaduct' 'vestment'],58.40%,False,100,25,10,0.00100,0.00,32x32x3
+random/1333,['cardigan' 'European fire salamander' 'sea cucumber' 'American lobster' 'snorkel' 'desk' 'frying pan' 'altar' 'viaduct' 'vestment'],59.00%,True,100,25,10,0.00100,0.00,32x32x3
+random/1334,['flagpole' 'plunger' 'guacamole' 'baboon' 'scorpion' 'teddy' 'refrigerator' 'sea cucumber' 'birdhouse' 'binoculars'],50.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1334,['flagpole' 'plunger' 'guacamole' 'baboon' 'scorpion' 'teddy' 'refrigerator' 'sea cucumber' 'birdhouse' 'binoculars'],50.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1335,['backpack' 'goose' 'bighorn' 'trolleybus' 'sandal' 'umbrella' 'maypole' 'flagpole' 'candle' 'hog'],42.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1335,['backpack' 'goose' 'bighorn' 'trolleybus' 'sandal' 'umbrella' 'maypole' 'flagpole' 'candle' 'hog'],51.20%,True,100,25,10,0.00100,0.00,32x32x3
+random/1336,['sewing machine' 'rugby ball' 'European fire salamander' 'bullfrog' 'beacon' 'turnstile' 'hourglass' 'abacus' 'stopwatch' 'ox'],52.00%,False,100,25,10,0.00100,0.00,32x32x3
+random/1336,['sewing machine' 'rugby ball' 'European fire salamander' 'bullfrog' 'beacon' 'turnstile' 'hourglass' 'abacus' 'stopwatch' 'ox'],55.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1337,['bullet train' 'coral reef' 'sombrero' 'beacon' 'miniskirt' 'chimpanzee' 'plunger' 'broom' 'snorkel' 'sock'],54.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1337,['bullet train' 'coral reef' 'sombrero' 'beacon' 'miniskirt' 'chimpanzee' 'plunger' 'broom' 'snorkel' 'sock'],57.80%,True,100,25,10,0.00100,0.00,32x32x3
+random/1338,['parking meter' 'American alligator' 'triumphal arch' 'military uniform' 'pomegranate' 'pretzel' 'potpie' 'organ' 'lakeside' 'cougar'],58.60%,False,100,25,10,0.00100,0.00,32x32x3
+random/1338,['parking meter' 'American alligator' 'triumphal arch' 'military uniform' 'pomegranate' 'pretzel' 'potpie' 'organ' 'lakeside' 'cougar'],59.60%,True,100,25,10,0.00100,0.00,32x32x3
+random/1339,['barn' 'meat loaf' 'academic gown' 'alp' 'fountain' 'water jug' 'ox' 'slug' 'obelisk' 'lemon'],59.80%,False,100,25,10,0.00100,0.00,32x32x3
+random/1339,['barn' 'meat loaf' 'academic gown' 'alp' 'fountain' 'water jug' 'ox' 'slug' 'obelisk' 'lemon'],57.40%,True,100,25,10,0.00100,0.00,32x32x3
