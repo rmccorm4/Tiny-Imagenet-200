@@ -1,7 +1,7 @@
 # Tiny-Imagenet-200
 
-This repository is my research code for exploration of Convolutional Neural
-Networks, specifically on the Tiny-Imagenet-200 dataset. I plan to start
+This repository is my personal research code for exploration of Convolutional 
+Neural Networks, specifically on the Tiny-Imagenet-200 dataset. I plan to start
 small with subsets of 10 classes to benchmark against CIFAR-10, then
 eventually expand to larger and larger subsets, making my way up to all
 200 classes to compare against [Stanford's CS231N results](https://tiny-imagenet.herokuapp.com/).
@@ -173,15 +173,7 @@ python networks/train_tiny_lenet.py --resize=True --num_classes=10 --wnids='rand
 TODO:
 * Check if int values of images are correct as opposed to floats like in Matlab.
 * Check if resized images look correct with imshow
-* Networks are VERY dependent on weight initializations, so if they don't
-get a good random start, the network accuracy will be random. Look into
-how to set these values similarly to how matconvnet does it.
-* Make choice of wnids path more dynamic
-* Figure out how to check accuracy from saved model
-	* Worst case run validation images through trained network again?
-
-* Totally clean up network code and figure out how to extract important
-network information from saved models or use callbacks/manually code it
+* Run and save CIFAR-10 results to compare on CIFAR-LeNet
 
 IDEAS:
 * Train a network to learn best classes to put together in a set?
@@ -191,5 +183,3 @@ and train on those, and repeat
 training/validation images per class by generating realistic images?
 
 ISSUES:
-* Evaluating loaded model with validation data is not returning the proper 
-accuracy, need to look into this...
