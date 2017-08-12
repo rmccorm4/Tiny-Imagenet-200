@@ -47,6 +47,7 @@ The following command will create an Anaconda virtual environment with the
 modules listed in requirements.txt installed. This is very useful on clusters
 where you don't necessarily have root priveliges. To be specific, I used
 Anaconda/4.0.0 in these cases. Locally, any version should be fine.
+
 ```
 conda create --name py3 python=3.5.2 --file requirements.txt
 ```
@@ -89,7 +90,7 @@ python utils/produce_files.py
 
 and by following the prompts.
 
-## Traning Network
+## Training Network
 
 Currently, everything is meant to be run from the highest level directory
 of this repository. Paths could be incorrect if you run code from the directory
@@ -136,7 +137,7 @@ python networks/train_tiny_lenet.py --resize=True --num_classes=10 --wnids='rand
 # Int: How many images to pass through the network at once, Default=100
 --batch_size
 
-# Int: How many times to run all of the data through th enetwork, Defualt=25
+# Int: How many times to run all of the data through the network, Default=25
 --num_epochs
 
 # Int: Number of classes the network is being trained on
@@ -148,7 +149,7 @@ python networks/train_tiny_lenet.py --resize=True --num_classes=10 --wnids='rand
 # Float: Adjustable hyperparameter, Default=0.00
 --weight_decay
 
-# Boolean: Whether to preprocess data in certain ways, Default=False
+# String: "True" or "False", Whether to preprocess data in certain ways, Default="False"
 --data_augmentation
 
 # String: Choice of 'train_acc', 'train_loss', 'val_acc', 'val_loss' to monitor
@@ -158,13 +159,13 @@ python networks/train_tiny_lenet.py --resize=True --num_classes=10 --wnids='rand
 # String: Path to set of classes to train on, Default=User_Input
 --wnids
 
-# Boolean: True=32x32, False=64x64, Default=False
+# String: "True"=32x32, "False"=64x64, Default="False"
 --resize
 
 # String: Path to saved model to evaluate accuracy of
 --load
 
-# Boolean: True=Normalize images by dividing each color channel by 255, Default=False
+# String: "True"=Normalize images by dividing each color channel by 255, Default="False"
 --normalize
 ```
 
