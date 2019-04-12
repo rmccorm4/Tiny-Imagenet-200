@@ -6,22 +6,17 @@ small with subsets of 10 classes to benchmark against CIFAR-10, then
 eventually expand to larger and larger subsets, making my way up to all
 200 classes to compare against [Stanford's CS231N results](https://tiny-imagenet.herokuapp.com/).
 
----
 ## Table of Contents
 
-### Getting Started
+* [Getting Started](https://github.com/rmccorm4/Tiny-Imagenet-200#getting-started-1)
+* [Setting up your Environment](https://github.com/rmccorm4/Tiny-Imagenet-200#setting-up-your-environment-1)
+    * [Anaconda](https://github.com/rmccorm4/Tiny-Imagenet-200#anaconda)
+    * [Pip](https://github.com/rmccorm4/Tiny-Imagenet-200#pip)
+* [Creating Class Sets](https://github.com/rmccorm4/Tiny-Imagenet-200#creating-class-sets-1)
+* [Training the Network](https://github.com/rmccorm4/Tiny-Imagenet-200#training-network-1)
+* [Evaluating the Network](https://github.com/rmccorm4/Tiny-Imagenet-200#evaluating-trained-network-1)
+* [Tweakable Parameters](https://github.com/rmccorm4/Tiny-Imagenet-200#tweakable-parameters-1)
 
-### Setting Up Your Environment
-* [Anaconda](https://www.continuum.io/anaconda-overview)
-* [Pip](https://pypi.python.org/pypi/pip)
-
-### Creating Class Sets
-
-### Training Network
-
-### Evaluating Trained Network
-
-### Tweakable Parameters
 ---
 
 ## Getting Started
